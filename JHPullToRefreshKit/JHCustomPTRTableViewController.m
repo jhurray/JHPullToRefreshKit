@@ -53,10 +53,9 @@
     _refreshControl = refreshControl;
     _refreshControl.delegate = self;
     [_refreshControl addTarget:self action:@selector(tableViewWasPulledToRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:_refreshControl];
     if (_refreshControl->_type == JHRefreshControlTypeBackground) {
-        [self.view addSubview:_refreshControl];
-    } else {
-        [self.tableView addSubview:_refreshControl];
+        [self.tableView sendSubviewToBack:_refreshControl];
     }
 }
 

@@ -22,7 +22,7 @@
     // Override point for customization after application launch.
     
     ColorChangeRefreshControl *refreshControl = [[ColorChangeRefreshControl alloc]
-                                                     initWithType:JHRefreshControlTypeSlideDown
+                                                     initWithType:JHRefreshControlTypeBackground
                                                       andColors:@[[UIColor blueColor],
                                                                   [UIColor purpleColor],
                                                                   [UIColor redColor],

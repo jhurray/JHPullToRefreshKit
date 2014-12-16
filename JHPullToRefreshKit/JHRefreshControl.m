@@ -175,8 +175,16 @@
         CGRect newFrame = CGRectMake(0, newY, kScreenWidth, -newY);
         self.frame = newFrame;
         self.bounds = newFrame;
-    } else {
-        self.frame = [self calculatedFrame];
+        //NSLog(@"new frame : %@", NSStringFromCGRect(newFrame));
+    }
+    else {
+        if (_type == JHRefreshControlTypeSlideDown) {
+            self.frame = [self calculatedFrame];
+        }
+        else {
+            self.frame = CGRectMake(0, offset, kScreenWidth, self.height);
+        }
+        //NSLog(@"calculated frame : %@", NSStringFromCGRect([self calculatedFrame]));
     }
     self.refreshAnimationView.frame = self.bounds;
     self.refreshAnimationView.bounds = self.bounds;
