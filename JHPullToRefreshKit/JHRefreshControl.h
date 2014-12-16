@@ -31,8 +31,8 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 
 @property (nonatomic, assign, getter=isRefreshing) BOOL refreshing;
 @property (nonatomic, readonly) CGFloat height;
-@property (nonatomic, readonly) CGFloat animationDuration;
-@property (nonatomic, readonly) CGFloat animationDelay;
+@property (nonatomic, readonly) NSTimeInterval animationDuration;
+@property (nonatomic, readonly) NSTimeInterval animationDelay;
 @property (weak, nonatomic) id<JHRefreshControlDelegate> delegate;
 
 // Constructors
