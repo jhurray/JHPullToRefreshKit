@@ -1,9 +1,3 @@
-JHPullToRefreshKit
-==================
-
-Abstract wrapper to easily create pull to refresh controls 
-
-```objective-c
 //
 //  JHRefreshControl.h
 //  JHPullToRefreshExampleProj
@@ -152,4 +146,3 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 @end
 
 #endif
-```
