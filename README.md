@@ -42,6 +42,7 @@ Abstract wrapper to easily create pull to refresh controls
 //  Copyright (c) 2014 jhurray. All rights reserved.
 //
 
+#import "JHPullToRefreshKit.h"
 #import <UIKit/UIKit.h>
 
 @class JHRefreshControl;
@@ -78,8 +79,12 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 -(id)initWithType:(JHRefreshControlType)type;
 
 // Instance methods
+// manual refresh
 -(void)forceRefresh;
+// called to end the animation
 -(void)endRefreshing;
+// called to add a subview to the animation view
+-(void)addSubviewToRefreshAnimationView:(UIView *)subview;
 
 // Abstract Instance Methods
 // Must be overriden in subclasses

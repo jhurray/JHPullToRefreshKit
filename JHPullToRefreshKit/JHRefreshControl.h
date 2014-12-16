@@ -43,8 +43,11 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 -(id)initWithType:(JHRefreshControlType)type;
 
 // Instance methods
+// manual refresh
 -(void)forceRefresh;
+// called to end the animation
 -(void)endRefreshing;
+// called to add a subview to the animation view
 -(void)addSubviewToRefreshAnimationView:(UIView *)subview;
 
 // Abstract Instance Methods
