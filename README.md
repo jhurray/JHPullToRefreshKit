@@ -65,10 +65,13 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
     JHRefreshControlType _type;
 }
 
-@property (nonatomic, assign, getter=isRefreshing) BOOL refreshing;
+// Read only properties
+@property (nonatomic, readonly, getter=isRefreshing) BOOL refreshing;
 @property (nonatomic, readonly) CGFloat height;
 @property (nonatomic, readonly) NSTimeInterval animationDuration;
 @property (nonatomic, readonly) NSTimeInterval animationDelay;
+
+// delegate
 @property (weak, nonatomic) id<JHRefreshControlDelegate> delegate;
 
 // Constructors
@@ -157,7 +160,11 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 
 @interface JHRefreshControl()
 
+// where animations should be done
 @property (strong, nonatomic) UIView *refreshAnimationView;
+
+// allows writing to refreshing
+@property (nonatomic, assign, getter=isRefreshing) BOOL refreshing;
 
 // sends a ValueChanged notification
 -(void)refresh;
