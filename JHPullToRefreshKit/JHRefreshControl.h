@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 jhurray. All rights reserved.
 //
 
+#import "JHPullToRefreshKit.h"
 #import <UIKit/UIKit.h>
 
 @class JHRefreshControl;
@@ -44,6 +45,7 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 // Instance methods
 -(void)forceRefresh;
 -(void)endRefreshing;
+-(void)addSubviewToRefreshAnimationView:(UIView *)subview;
 
 // Abstract Instance Methods
 // Must be overriden in subclasses

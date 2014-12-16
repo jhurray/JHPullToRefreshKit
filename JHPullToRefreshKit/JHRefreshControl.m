@@ -8,7 +8,6 @@
 
 #define JHRefreshControlBaseClass_protected
 
-#import "JHPullToRefreshKit.h"
 #import "JHRefreshControl.h"
 
 @interface JHRefreshControl()
@@ -45,6 +44,10 @@
 
 -(void)forceRefresh {
     [self refresh];
+}
+
+-(void)addSubviewToRefreshAnimationView:(UIView *)subview {
+    [self.refreshAnimationView addSubview:subview];
 }
 
 -(CGFloat)height {
@@ -142,8 +145,6 @@
     }];
 }
 
-//TODO: deal with navheight
-
 -(void)containingScrollViewDidEndDragging:(UIScrollView *)scrollView {
     NSLog(@"%f, %f", scrollView.contentOffset.y, self.height);
     if(-scrollView.contentOffset.y >
@@ -152,14 +153,12 @@
     }
 }
 
-//TODO: deal with navheight
-
 -(void)containingScrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat actualOffset = scrollView.contentOffset.y /* + navheight */;
     [self setFrameForScrollingWithOffset:actualOffset];
     if (!self.isRefreshing) {
         CGFloat pullDistance = MAX(0.0, -actualOffset);
-        CGFloat pullRatio = MIN(MAX(0.0, pullDistance), self.height);
+        CGFloat pullRatio = MIN(MAX(0.0, pullDistance), self.height)/self.height;
         CGFloat velocity = [scrollView.panGestureRecognizer velocityInView:scrollView].y;
         [self handleScrollingOnAnimationView:self.refreshAnimationView
                             withPullDistance:pullDistance
@@ -170,24 +169,25 @@
 }
 
 -(void)setFrameForScrollingWithOffset:(CGFloat)offset {
+    // offset is a negative value
     if (-offset > self.height) {
-        CGFloat newY = -self.height + offset;
-        CGRect newFrame = CGRectMake(0, newY, kScreenWidth, -newY);
+        CGRect newFrame = CGRectMake(0, offset, kScreenWidth, ABS(offset));
         self.frame = newFrame;
-        self.bounds = newFrame;
+        self.bounds = CGRectMake(0, 0, kScreenWidth, ABS(offset));
         //NSLog(@"new frame : %@", NSStringFromCGRect(newFrame));
     }
     else {
+        CGFloat newY = offset;
         if (_type == JHRefreshControlTypeSlideDown) {
-            self.frame = [self calculatedFrame];
+            newY = -self.height;
         }
-        else {
-            self.frame = CGRectMake(0, offset, kScreenWidth, self.height);
-        }
-        //NSLog(@"calculated frame : %@", NSStringFromCGRect([self calculatedFrame]));
+        self.frame = CGRectMake(0, newY, kScreenWidth, self.height);
+        self.bounds = CGRectMake(0, 0, kScreenWidth, self.height);
+        // NSLog(@"calculated frame : %@", NSStringFromCGRect([self calculatedFrame]));
     }
-    self.refreshAnimationView.frame = self.bounds;
-    self.refreshAnimationView.bounds = self.bounds;
+    // IF SAME SIZE AS CONTROL
+    //self.refreshAnimationView.frame = self.bounds;
+    self.refreshAnimationView.frame = CGRectMake(0, 0, kScreenWidth, self.height);
 }
 
 

@@ -8,6 +8,12 @@
 
 #import "ColorChangeRefreshControl.h"
 #import "ColorPTRTableViewController.h"
+
+#import "BubbleRefreshControl.h"
+#import "BubblesPTRTableViewController.h"
+
+#import "ViewController.h"
+
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -22,7 +28,7 @@
     // Override point for customization after application launch.
     
     ColorChangeRefreshControl *refreshControl = [[ColorChangeRefreshControl alloc]
-                                                     initWithType:JHRefreshControlTypeBackground
+                                                     initWithType:JHRefreshControlTypeSlideDown
                                                       andColors:@[[UIColor blueColor],
                                                                   [UIColor purpleColor],
                                                                   [UIColor redColor],
@@ -30,7 +36,16 @@
                                                                   [UIColor yellowColor],
                                                                   [UIColor greenColor],
                                                                   [UIColor cyanColor]]];
-    ColorPTRTableViewController *vc = [[ColorPTRTableViewController alloc] initWithRefreshControl:refreshControl];
+    ColorPTRTableViewController *colorVC = [[ColorPTRTableViewController alloc] initWithRefreshControl:refreshControl];
+    colorVC.title = @"Colors - SlideDown";
+    
+    BubbleRefreshControl *bubbleControl = [[BubbleRefreshControl alloc] initWithType:JHRefreshControlTypeBackground];
+    BubblesPTRTableViewController *bubbleVC = [[BubblesPTRTableViewController alloc] initWithRefreshControl:bubbleControl];
+    bubbleVC.title = @"Bubble - Background";
+    
+    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[colorVC, bubbleVC]];
+    
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     window.rootViewController = nav;
     [window makeKeyAndVisible];

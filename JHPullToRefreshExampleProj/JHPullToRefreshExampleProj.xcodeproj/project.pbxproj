@@ -18,6 +18,8 @@
 		26296AD51A3E69F2003D76A7 /* JHCustomPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AD41A3E69F2003D76A7 /* JHCustomPTRTableViewController.m */; };
 		26296ADC1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296ADB1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m */; };
 		26296ADF1A3FEA49003D76A7 /* ColorPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296ADE1A3FEA49003D76A7 /* ColorPTRTableViewController.m */; };
+		26296AE41A400F25003D76A7 /* BubblesPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AE31A400F25003D76A7 /* BubblesPTRTableViewController.m */; };
+		26296AE71A400F6D003D76A7 /* BubbleRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AE61A400F6D003D76A7 /* BubbleRefreshControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		26296ADB1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChangeRefreshControl.m; sourceTree = "<group>"; };
 		26296ADD1A3FEA49003D76A7 /* ColorPTRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPTRTableViewController.h; sourceTree = "<group>"; };
 		26296ADE1A3FEA49003D76A7 /* ColorPTRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPTRTableViewController.m; sourceTree = "<group>"; };
+		26296AE21A400F25003D76A7 /* BubblesPTRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubblesPTRTableViewController.h; sourceTree = "<group>"; };
+		26296AE31A400F25003D76A7 /* BubblesPTRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubblesPTRTableViewController.m; sourceTree = "<group>"; };
+		26296AE51A400F6D003D76A7 /* BubbleRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleRefreshControl.h; sourceTree = "<group>"; };
+		26296AE61A400F6D003D76A7 /* BubbleRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleRefreshControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +108,9 @@
 				26296AB31A3E682E003D76A7 /* Main.storyboard */,
 				26296AB61A3E682E003D76A7 /* Images.xcassets */,
 				26296AB81A3E682E003D76A7 /* LaunchScreen.xib */,
-				26296AA91A3E682E003D76A7 /* Supporting Files */,
+				26296AE11A400EC4003D76A7 /* Bubbles */,
 				26296AE01A3FEA5F003D76A7 /* Colors */,
+				26296AA91A3E682E003D76A7 /* Supporting Files */,
 			);
 			path = JHPullToRefreshExampleProj;
 			sourceTree = "<group>";
@@ -155,6 +162,17 @@
 				26296ADE1A3FEA49003D76A7 /* ColorPTRTableViewController.m */,
 			);
 			name = Colors;
+			sourceTree = "<group>";
+		};
+		26296AE11A400EC4003D76A7 /* Bubbles */ = {
+			isa = PBXGroup;
+			children = (
+				26296AE21A400F25003D76A7 /* BubblesPTRTableViewController.h */,
+				26296AE31A400F25003D76A7 /* BubblesPTRTableViewController.m */,
+				26296AE51A400F6D003D76A7 /* BubbleRefreshControl.h */,
+				26296AE61A400F6D003D76A7 /* BubbleRefreshControl.m */,
+			);
+			name = Bubbles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,8 +279,10 @@
 				26296ADC1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m in Sources */,
 				26296AAF1A3E682E003D76A7 /* AppDelegate.m in Sources */,
 				26296AD51A3E69F2003D76A7 /* JHCustomPTRTableViewController.m in Sources */,
+				26296AE71A400F6D003D76A7 /* BubbleRefreshControl.m in Sources */,
 				26296AAC1A3E682E003D76A7 /* main.m in Sources */,
 				26296ADF1A3FEA49003D76A7 /* ColorPTRTableViewController.m in Sources */,
+				26296AE41A400F25003D76A7 /* BubblesPTRTableViewController.m in Sources */,
 				26296AD21A3E6974003D76A7 /* JHRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

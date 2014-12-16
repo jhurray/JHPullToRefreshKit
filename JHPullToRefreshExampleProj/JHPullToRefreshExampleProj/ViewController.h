@@ -9,8 +9,9 @@
 #import "JHCustomPTRTableViewController.h"
 #import <UIKit/UIKit.h>
 
-@interface ViewController : JHCustomPTRTableViewController
+@interface ViewController : UITableViewController
 
+-(id)initWithViewControllers:(NSArray *)vcs;
 
 @end
 
