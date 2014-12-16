@@ -10,7 +10,7 @@
 
 #import "JHCustomPTRTableViewController.h"
 
-@interface JHCustomPTRTableViewController(){
+@interface JHCustomPTRTableViewController()<UIScrollViewDelegate, JHRefreshControlDelegate>{
     @private
     double resetAnimationDuration;
 }

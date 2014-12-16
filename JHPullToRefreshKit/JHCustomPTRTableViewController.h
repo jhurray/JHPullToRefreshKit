@@ -10,7 +10,7 @@
 #import "JHRefreshControl.h"
 #import <UIKit/UIKit.h>
 
-@interface JHCustomPTRTableViewController : UITableViewController <UIScrollViewDelegate, JHRefreshControlDelegate>
+@interface JHCustomPTRTableViewController : UITableViewController
 
 -(id)initWithRefreshControl:(JHRefreshControl *)refreshControl;
 -(id)initWithRefreshControl:(JHRefreshControl *)refreshControl tableViewStyle:(UITableViewStyle)style ;
