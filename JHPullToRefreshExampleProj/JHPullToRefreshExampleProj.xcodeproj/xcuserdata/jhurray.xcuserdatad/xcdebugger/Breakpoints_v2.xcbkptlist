@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440484832.222181"
+            timestampString = "440494596.477445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440484832.222181"
+            timestampString = "440494596.477445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440484832.222181"
+            timestampString = "440494596.477445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "-initWithType:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440493562.800612"
+            timestampString = "440494596.477445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "-containingScrollViewDidEndDragging:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440493562.800612"
+            timestampString = "440494596.477445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "-refresh"
             landmarkType = "5">
          </BreakpointContent>

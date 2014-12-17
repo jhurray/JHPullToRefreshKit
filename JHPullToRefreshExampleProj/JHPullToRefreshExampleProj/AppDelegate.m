@@ -12,6 +12,9 @@
 #import "BubbleRefreshControl.h"
 #import "BubblesPTRTableViewController.h"
 
+#import "LabelPTRTableViewController.h"
+#import "LabelRefreshControl.h"
+
 #import "ViewController.h"
 
 #import "AppDelegate.h"
@@ -47,7 +50,16 @@
     BubblesPTRTableViewController *bubbleVC2 = [[BubblesPTRTableViewController alloc] initWithRefreshControl:bubbleControl2];
     bubbleVC2.title = @"Bubble - SlideDown";
     
-    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[colorVC, bubbleVC, bubbleVC2]];
+    LabelRefreshControl *labelControl = [[LabelRefreshControl alloc] initWithType:JHRefreshControlTypeBackground];
+    LabelPTRTableViewController *labelVC = [[LabelPTRTableViewController alloc] initWithRefreshControl:labelControl];
+    labelVC.title = @"Instructions - Stretches";
+    
+    LabelRefreshControl *labelControl2 = [[LabelRefreshControl alloc] initWithType:JHRefreshControlTypeBackground];
+    labelControl2.animationViewStretches = NO;
+    LabelPTRTableViewController *labelVC2 = [[LabelPTRTableViewController alloc] initWithRefreshControl:labelControl2];
+    labelVC2.title = @"Instructions - Doesn't Stretch";
+    
+    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[colorVC, bubbleVC, bubbleVC2, labelVC, labelVC2]];
     vc.title = @"JHRefreshControl Example";
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];

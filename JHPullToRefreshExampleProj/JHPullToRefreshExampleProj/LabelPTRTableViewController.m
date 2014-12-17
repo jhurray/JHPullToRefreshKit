@@ -1,21 +1,21 @@
 //
-//  BubblesPTRTableViewController.m
+//  LabelPTRTableViewController.m
 //  JHPullToRefreshExampleProj
 //
-//  Created by Jeff Hurray on 12/16/14.
+//  Created by Jeff Hurray on 12/17/14.
 //  Copyright (c) 2014 jhurray. All rights reserved.
 //
 
-#import "BubblesPTRTableViewController.h"
+#import "LabelPTRTableViewController.h"
 
-@implementation BubblesPTRTableViewController
+@implementation LabelPTRTableViewController
 
 -(void)viewDidLoad {
     [super viewDidLoad];
 }
 
 -(void)tableViewWasPulledToRefresh {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.refreshControl endRefreshing];
     });
 }
@@ -29,12 +29,13 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"bubbles"];
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"label"];
     if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bubbles"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"label"];
     }
-    cell.textLabel.text = @"bubbles!!!";
+    cell.textLabel.text = @"Instructions!!!";
     return cell;
 }
+
 
 @end

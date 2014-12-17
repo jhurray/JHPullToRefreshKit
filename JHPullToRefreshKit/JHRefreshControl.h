@@ -180,7 +180,8 @@ typedef void (^JHCompletionBlock)(void);
     // Set refresh animation to correct state before a new cycle begins
  }
  
--(void)animationCycleOnAnimationView:(UIView *)animationView {
+-(void)animationCycleFor
+ AnimationView:(UIView *)animationView {
     // UI changes to be animated each cycle
  }
  
@@ -188,7 +189,6 @@ typedef void (^JHCompletionBlock)(void);
     // animation for when refreshing is done.
     // does not need to be overridden
     // if empty no animation will be executed
-    // runs a KeyFrame animation with 'animationOptions'
     completion();
  }
  
