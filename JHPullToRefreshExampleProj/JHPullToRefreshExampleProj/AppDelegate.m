@@ -12,6 +12,15 @@
 #import "BubbleRefreshControl.h"
 #import "BubblesPTRTableViewController.h"
 
+#import "LabelPTRTableViewController.h"
+#import "LabelRefreshControl.h"
+
+#import "GooglePTRTableViewController.h"
+#import "GoogleRefreshControl.h"
+
+#import "YahooRefreshControl.h"
+#import "YahooViewController.h"
+
 #import "ViewController.h"
 
 #import "AppDelegate.h"
@@ -27,24 +36,41 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    ColorChangeRefreshControl *refreshControl = [[ColorChangeRefreshControl alloc]
-                                                     initWithType:JHRefreshControlTypeSlideDown
-                                                      andColors:@[[UIColor blueColor],
-                                                                  [UIColor purpleColor],
-                                                                  [UIColor redColor],
-                                                                  [UIColor orangeColor],
-                                                                  [UIColor yellowColor],
-                                                                  [UIColor greenColor],
-                                                                  [UIColor cyanColor]]];
-    ColorPTRTableViewController *colorVC = [[ColorPTRTableViewController alloc] initWithRefreshControl:refreshControl];
-    colorVC.title = @"Colors - SlideDown";
+    ColorPTRTableViewController *colorVC = [[ColorPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    colorVC.title = @"Colors";
     
-    BubbleRefreshControl *bubbleControl = [[BubbleRefreshControl alloc] initWithType:JHRefreshControlTypeBackground];
-    BubblesPTRTableViewController *bubbleVC = [[BubblesPTRTableViewController alloc] initWithRefreshControl:bubbleControl];
-    bubbleVC.title = @"Bubble - Background";
     
-    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[colorVC, bubbleVC]];
+    GooglePTRTableViewController *googleVC = [[GooglePTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    googleVC.title = @"Google";
     
+    YahooViewController *yahooVC = [[YahooViewController alloc] initWithStyle:UITableViewStylePlain];
+    yahooVC.title = @"Yahoo News Digest";
+    
+    BubblesPTRTableViewController *bubbleVC = [[BubblesPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    bubbleVC.title = @"Bubbles";
+    
+    BubblesPTRTableViewController *bubbleVC1 = [[BubblesPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    bubbleVC1.title = @"Style = Background - AnchorPostion = Top";
+    
+    BubblesPTRTableViewController *bubbleVC2 = [[BubblesPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    bubbleVC2.title = @"Style = SlideDown - AnchorPostion = Top";
+    
+    BubblesPTRTableViewController *bubbleVC3 = [[BubblesPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    bubbleVC3.title = @"Style = Background - AnchorPostion = Middle";
+    
+    BubblesPTRTableViewController *bubbleVC4 = [[BubblesPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    bubbleVC4.title = @"Style = SlideDown - AnchorPostion = Middle";
+    
+    BubblesPTRTableViewController *bubbleVC5 = [[BubblesPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    bubbleVC5.title = @"Style = Background - AnchorPostion = Bottom";
+    
+    BubblesPTRTableViewController *bubbleVC6 = [[BubblesPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    bubbleVC6.title = @"Style = SlideDown - AnchorPostion = Bottom";
+    
+
+    
+    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[@[colorVC, googleVC, yahooVC, bubbleVC], @[bubbleVC1, bubbleVC2, bubbleVC3, bubbleVC4, bubbleVC5, bubbleVC6]]];
+    vc.title = @"JHRefreshControl Example";
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     window.rootViewController = nav;

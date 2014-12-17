@@ -10,9 +10,27 @@
 
 @implementation ColorPTRTableViewController
 
+-(void)viewDidLoad {
+    [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.colorControl = [[ColorChangeRefreshControl alloc]
+                                                 initWithType:JHRefreshControlTypeSlideDown
+                                                 andColors:@[[UIColor blueColor],
+                                                             [UIColor purpleColor],
+                                                             [UIColor redColor],
+                                                             [UIColor orangeColor],
+                                                             [UIColor yellowColor],
+                                                             [UIColor greenColor],
+                                                             [UIColor cyanColor]]];
+    __weak id weakSelf = self;
+    [self.colorControl addToScrollView:self.tableView withRefreshBlock:^{
+        [weakSelf tableViewWasPulledToRefresh];
+    }];
+}
+
 -(void)tableViewWasPulledToRefresh {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.refreshControl endRefreshing];
+        [self.colorControl endRefreshing];
     });
 }
 

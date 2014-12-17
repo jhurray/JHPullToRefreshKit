@@ -21,10 +21,13 @@
 -(id)initWithType:(JHRefreshControlType)type andColors:(NSArray *)colors {
     if (self = [super initWithType:type]){
         self.colors = colors;
-        self->index = 0;
-        self.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
     }
     return self;
+}
+
+-(void)setup {
+    self->index = 0;
+    self.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
 }
 
 -(void)handleScrollingOnAnimationView:(UIView *)animationView
@@ -42,9 +45,9 @@
     }
 }
 
--(void)animationCycleOnAnimationView:(UIView *)animationView {
+-(void)animationCycleForAnimationView:(UIView *)animationView {
     // UI changes to be animated each cycle
-    animationView.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
+    self.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
 }
 
 +(CGFloat)height {
@@ -56,11 +59,5 @@
     //return the animation duration
     return 0.3;
 }
-
-+(NSTimeInterval)animationDelay {
-    //return the animation delay
-    return 0.0;
-}
-
 
 @end

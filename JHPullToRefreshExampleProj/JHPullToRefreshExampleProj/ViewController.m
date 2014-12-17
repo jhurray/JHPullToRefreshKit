@@ -29,8 +29,16 @@
     
 }
 
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.viewControllers.count;
+}
+
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return !section ? @"Cool examples" : @"Examples of customization options";
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.viewControllers count];
+    return ((NSArray *)self.viewControllers[section]).count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -38,7 +46,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *vc = [self.viewControllers objectAtIndex:indexPath.row];
+    UIViewController *vc = [[self.viewControllers objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -48,9 +56,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"vcs"];
     }
     
-    UIViewController *vc = [self.viewControllers objectAtIndex:indexPath.row];
+    UIViewController *vc = [[self.viewControllers objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
     cell.textLabel.text = vc.title;
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
     return cell;
 }
 

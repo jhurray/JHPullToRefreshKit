@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 jhurray. All rights reserved.
 //
 
-#import "JHCustomPTRTableViewController.h"
+#import "ColorChangeRefreshControl.h"
 
-@interface ColorPTRTableViewController : JHCustomPTRTableViewController
+@interface ColorPTRTableViewController : UITableViewController
+
+@property (strong, nonatomic) ColorChangeRefreshControl *colorControl;
 
 @end

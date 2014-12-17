@@ -9,35 +9,94 @@
 #import "JHPullToRefreshKit.h"
 #import <UIKit/UIKit.h>
 
-@class JHRefreshControl;
-
-@protocol JHRefreshControlDelegate <NSObject>
-
--(void)refreshControlDidStart:(JHRefreshControl *)refreshControl;
--(void)refreshControlDidEnd:(JHRefreshControl *)refreshControl;
-
-@end
-
+/**************************************
+            Enums
+ **************************************/
 
 typedef NS_ENUM(NSInteger, JHRefreshControlType) {
     JHRefreshControlTypeSlideDown,
     JHRefreshControlTypeBackground
 };
 
+typedef NS_ENUM(NSInteger, JHRefreshControlAnimationType) {
+    JHRefreshControlAnimationTypeDefault,
+    JHRefreshControlAnimationTypeKeyFrame,
+    JHRefreshControlAnimationTypeSpring
+};
 
-@interface JHRefreshControl : UIControl <UIScrollViewDelegate>{
+typedef NS_ENUM(NSInteger, JHRefreshControlAnchorPosition) {
+    JHRefreshControlAnchorPositionTop,
+    JHRefreshControlAnchorPositionMiddle,
+    JHRefreshControlAnchorPositionBottom
+};
+
+
+/**************************************
+        Delegate
+ **************************************/
+
+@class JHRefreshControl;
+@protocol JHRefreshControlDelegate <NSObject>
+
+-(void)refreshControlDidStart:(JHRefreshControl *)refreshControl;
+-(void)refreshControlDidEnd:(JHRefreshControl *)refreshControl;
+
+@optional
+-(void)refreshControlDidStartAnimationCycle:(JHRefreshControl *)refreshControl;
+-(void)refreshControlDidEndAnimationCycle:(JHRefreshControl *)refreshControl;
+
+@end
+
+/**************************************
+ * * * * * * * * * * * * * * * * * * * *
+ *  *  *  *  *  *  *  *  *  *  *  *  *  *
+ *   *  JHRefreshControl Interface  *   *
+ *  *  *  *  *  *  *  *  *  *  *  *  *  *
+ * * * * * * * * * * * * * * * * * * * *
+ **************************************/
+
+typedef void (^JHCompletionBlock)(void);
+
+
+@interface JHRefreshControl : UIControl{
+    
     @public
+    // type of refresh control
     JHRefreshControlType _type;
+    
+    @public
+    // Depending on type of animation...
+    // When Default of Spring:
+    //      assign UIViewAnimationOptions
+    // When KeyFrame:
+    //      assign UIViewKeyframeAnimationOptions
+    // Defaults to 0
+    NSInteger animationOptions;
 }
 
-// When true:
+/**************************************
+        Properties
+ **************************************/
+
+// Determines refresh animation view position when the tableView is stretched
+// When Top / Bottom:
+//       Animated refresh view will stick to the Top / Bottom (constant height)
+// When Middle:
 //       Animated refresh view will stretch with table view (variable height)
-// When false:
-//       Animated refresh view will stay at the top (constant height)
-@property (nonatomic, assign) BOOL animationViewStretches;
+// Defaults to Top
+@property (nonatomic, assign) JHRefreshControlAnchorPosition anchorPosition;
+
+// Type of animation wrapped around the animation cycle
+// When Default:
+//      animations will be normal
+// When KeyFrame:
+//      call [UIView addKeyframeAnimation...]
+// When Spring:
+//      aniamtions will all have springy properties
+@property (nonatomic, assign) JHRefreshControlAnimationType animationType;
 
 // Read only properties
-@property (nonatomic, readonly, getter=isRefreshing) BOOL refreshing;
+@property (atomic, readonly, getter=isRefreshing) BOOL refreshing;
 @property (nonatomic, readonly) CGFloat height;
 @property (nonatomic, readonly) NSTimeInterval animationDuration;
 @property (nonatomic, readonly) NSTimeInterval animationDelay;
@@ -45,14 +104,26 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 // delegate
 @property (weak, nonatomic) id<JHRefreshControlDelegate> delegate;
 
-// Constructors
+/**************************************
+        Constructors
+ **************************************/
+
 -(id)initWithType:(JHRefreshControlType)type;
 
-// Instance methods
+/**************************************
+        Instance Methods
+ **************************************/
+
+// attach to a UIScrollView
+-(void)addToScrollView:(UIScrollView *)scrollView withRefreshBlock:(void(^)())refreshBlock;
+
 // manual refresh
 -(void)forceRefresh;
 // called to end the animation
 -(void)endRefreshing;
+// should reset UI elements here
+// called after refresh control finishes and is hidden
+-(void)resetAnimationView:(UIView *)animationView;
 // called to add a subview to the animation view
 -(void)addSubviewToRefreshAnimationView:(UIView *)subview;
 
@@ -60,6 +131,10 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
     Abstract Instance Methods
     Must be overriden in subclasses
 **************************************/
+
+// use this to setup the refresh control.
+// put setup code here instead of init
+-(void)setup;
 
 // used to control UI elements during scrolling
 -(void)handleScrollingOnAnimationView:(UIView *)animationView
@@ -74,16 +149,21 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
  -> animate [ animation cycle ]
     -> completion
         -> if refreshing:
-            another cycle
+            recurse (another cycle)
         -> else:
-            refreshing ended
+            refreshing ended -> [completion animation]
  */
 
 // Set refresh animation to correct state before a new cycle begins
 -(void)setupRefreshControlForAnimationView:(UIView *)animationView;
 
 // UI changes to be animated each cycle
--(void)animationCycleOnAnimationView:(UIView *)animationView;
+-(void)animationCycleForAnimationView:(UIView *)animationView;
+
+// animation for when refreshing is done.
+// does not need to be overridden
+// if empty no animation will be executed
+-(void)exitAnimationForRefreshView:(UIView *)animationView withCompletion:(JHCompletionBlock)completion;
 
 /**************************************
     Abstract Class Methods
@@ -92,6 +172,9 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 
 +(CGFloat)height;
 +(NSTimeInterval)animationDuration;
+
+// Does NOT need to be overriden but feel free.
+// Defaults to 0.0
 +(NSTimeInterval)animationDelay;
 
 @end
@@ -100,32 +183,46 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 /*
  COPY AND PASTE TO OVERRIDE functions
  
- -(void)handleScrollingOnAnimationView:(UIView *)animationView
+-(void)setup {
+    // use this to setup the refresh control.
+    // put setup code here instead of init
+}
+ 
+-(void)handleScrollingOnAnimationView:(UIView *)animationView
                          withPullDistance:(CGFloat)pullDistance
                          pullRatio:(CGFloat)pullRatio
                          pullVelocity:(CGFloat)pullVelocity {
     // used to control UI elements during scrolling
- }
+}
+
+-(void)resetAnimationView:(UIView *)animationView {
+    // should reset UI elements here
+    // called after refresh control finishes and is hidden
+}
  
 -(void)setupRefreshControlForAnimationView:(UIView *)animationView {
     // Set refresh animation to correct state before a new cycle begins
- }
+}
  
--(void)animationCycleOnAnimationView:(UIView *)animationView {
+-(void)animationCycleFor
+ AnimationView:(UIView *)animationView {
     // UI changes to be animated each cycle
- }
+}
  
- +(CGFloat)height {
+-(void)exitAnimationForRefreshView:(UIView *)animationView withCompletion:(JHCompletionBlock)completion {
+    // animation for when refreshing is done.
+    // does not need to be overridden
+    // if empty no animation will be executed
+    completion();
+}
+ 
++(CGFloat)height {
     //return the height
- }
+}
  
- +(NSTimeInterval)animationDuration {
++(NSTimeInterval)animationDuration {
     //return the animation duration
- }
- 
- +(NSTimeInterval)animationDelay {
-    //return the animation delay
- }
+}
 
 */
 
@@ -140,6 +237,9 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 
 @interface JHRefreshControl()
 
+// scrollView that the refreshControl is added to
+@property (strong, nonatomic) UIScrollView *parentScrollView;
+
 // where animations should be done
 @property (strong, nonatomic) UIView *refreshAnimationView;
 
@@ -152,6 +252,10 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 // override to completely change animation pattern
 // (For example conform to CAAnimation with animation delegate as completion)
 -(void)animateRefreshView;
+
+// called when the animation ends
+// either recurses or resets and hides
+-(void)animateRefreshViewEnded;
 
 // calls refresh control delegate
 -(void)resetAnimation;

@@ -15,11 +15,18 @@
 		26296ABA1A3E682E003D76A7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26296AB81A3E682E003D76A7 /* LaunchScreen.xib */; };
 		26296AC61A3E682E003D76A7 /* JHPullToRefreshExampleProjTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AC51A3E682E003D76A7 /* JHPullToRefreshExampleProjTests.m */; };
 		26296AD21A3E6974003D76A7 /* JHRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AD11A3E6974003D76A7 /* JHRefreshControl.m */; };
-		26296AD51A3E69F2003D76A7 /* JHCustomPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AD41A3E69F2003D76A7 /* JHCustomPTRTableViewController.m */; };
 		26296ADC1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296ADB1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m */; };
 		26296ADF1A3FEA49003D76A7 /* ColorPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296ADE1A3FEA49003D76A7 /* ColorPTRTableViewController.m */; };
 		26296AE41A400F25003D76A7 /* BubblesPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AE31A400F25003D76A7 /* BubblesPTRTableViewController.m */; };
 		26296AE71A400F6D003D76A7 /* BubbleRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AE61A400F6D003D76A7 /* BubbleRefreshControl.m */; };
+		267690FC1AC5DEA800FCADF5 /* AbstractFunctionsCopyandPaste.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267690FB1AC5DEA800FCADF5 /* AbstractFunctionsCopyandPaste.txt */; };
+		269E86A31A9FC65000ED8BCE /* YahooRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E86A21A9FC65000ED8BCE /* YahooRefreshControl.m */; };
+		269E86A61A9FC67400ED8BCE /* YahooViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E86A51A9FC67400ED8BCE /* YahooViewController.m */; };
+		26EDE7C51A42148200E6FB02 /* LabelRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7C41A42148200E6FB02 /* LabelRefreshControl.m */; };
+		26EDE7C81A4214B100E6FB02 /* LabelPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7C71A4214B100E6FB02 /* LabelPTRTableViewController.m */; };
+		26EDE7CC1A42278200E6FB02 /* GooglePTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7CB1A42278200E6FB02 /* GooglePTRTableViewController.m */; };
+		26EDE7CF1A4227A200E6FB02 /* GoogleRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7CE1A4227A200E6FB02 /* GoogleRefreshControl.m */; };
+		26FFF9D81A44968C009B92E8 /* JHLayerAnimationRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FFF9D71A44968C009B92E8 /* JHLayerAnimationRefreshControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +55,6 @@
 		26296AC51A3E682E003D76A7 /* JHPullToRefreshExampleProjTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHPullToRefreshExampleProjTests.m; sourceTree = "<group>"; };
 		26296AD01A3E6974003D76A7 /* JHRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JHRefreshControl.h; path = ../../JHPullToRefreshKit/JHRefreshControl.h; sourceTree = "<group>"; };
 		26296AD11A3E6974003D76A7 /* JHRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JHRefreshControl.m; path = ../../JHPullToRefreshKit/JHRefreshControl.m; sourceTree = "<group>"; };
-		26296AD31A3E69F2003D76A7 /* JHCustomPTRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JHCustomPTRTableViewController.h; path = ../../JHPullToRefreshKit/JHCustomPTRTableViewController.h; sourceTree = "<group>"; };
-		26296AD41A3E69F2003D76A7 /* JHCustomPTRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JHCustomPTRTableViewController.m; path = ../../JHPullToRefreshKit/JHCustomPTRTableViewController.m; sourceTree = "<group>"; };
 		26296AD81A3F790D003D76A7 /* JHPullToRefreshKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JHPullToRefreshKit.h; path = ../../JHPullToRefreshKit/JHPullToRefreshKit.h; sourceTree = "<group>"; };
 		26296ADA1A3FE5FA003D76A7 /* ColorChangeRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChangeRefreshControl.h; sourceTree = "<group>"; };
 		26296ADB1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChangeRefreshControl.m; sourceTree = "<group>"; };
@@ -59,6 +64,21 @@
 		26296AE31A400F25003D76A7 /* BubblesPTRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubblesPTRTableViewController.m; sourceTree = "<group>"; };
 		26296AE51A400F6D003D76A7 /* BubbleRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleRefreshControl.h; sourceTree = "<group>"; };
 		26296AE61A400F6D003D76A7 /* BubbleRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleRefreshControl.m; sourceTree = "<group>"; };
+		267690FB1AC5DEA800FCADF5 /* AbstractFunctionsCopyandPaste.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AbstractFunctionsCopyandPaste.txt; sourceTree = "<group>"; };
+		269E86A11A9FC65000ED8BCE /* YahooRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooRefreshControl.h; sourceTree = "<group>"; };
+		269E86A21A9FC65000ED8BCE /* YahooRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooRefreshControl.m; sourceTree = "<group>"; };
+		269E86A41A9FC67400ED8BCE /* YahooViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooViewController.h; sourceTree = "<group>"; };
+		269E86A51A9FC67400ED8BCE /* YahooViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooViewController.m; sourceTree = "<group>"; };
+		26EDE7C31A42148200E6FB02 /* LabelRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelRefreshControl.h; sourceTree = "<group>"; };
+		26EDE7C41A42148200E6FB02 /* LabelRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelRefreshControl.m; sourceTree = "<group>"; };
+		26EDE7C61A4214B100E6FB02 /* LabelPTRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelPTRTableViewController.h; sourceTree = "<group>"; };
+		26EDE7C71A4214B100E6FB02 /* LabelPTRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelPTRTableViewController.m; sourceTree = "<group>"; };
+		26EDE7CA1A42278200E6FB02 /* GooglePTRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GooglePTRTableViewController.h; sourceTree = "<group>"; };
+		26EDE7CB1A42278200E6FB02 /* GooglePTRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooglePTRTableViewController.m; sourceTree = "<group>"; };
+		26EDE7CD1A4227A200E6FB02 /* GoogleRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleRefreshControl.h; sourceTree = "<group>"; };
+		26EDE7CE1A4227A200E6FB02 /* GoogleRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleRefreshControl.m; sourceTree = "<group>"; };
+		26FFF9D61A44968C009B92E8 /* JHLayerAnimationRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JHLayerAnimationRefreshControl.h; path = ../../JHPullToRefreshKit/JHLayerAnimationRefreshControl.h; sourceTree = "<group>"; };
+		26FFF9D71A44968C009B92E8 /* JHLayerAnimationRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JHLayerAnimationRefreshControl.m; path = ../../JHPullToRefreshKit/JHLayerAnimationRefreshControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +128,9 @@
 				26296AB31A3E682E003D76A7 /* Main.storyboard */,
 				26296AB61A3E682E003D76A7 /* Images.xcassets */,
 				26296AB81A3E682E003D76A7 /* LaunchScreen.xib */,
+				269E86A01A9FC62400ED8BCE /* Yahoo News Digest */,
+				26EDE7C91A42276E00E6FB02 /* Google */,
+				26EDE7C21A4213B800E6FB02 /* Labeled */,
 				26296AE11A400EC4003D76A7 /* Bubbles */,
 				26296AE01A3FEA5F003D76A7 /* Colors */,
 				26296AA91A3E682E003D76A7 /* Supporting Files */,
@@ -144,10 +167,11 @@
 		26296ACF1A3E6926003D76A7 /* JHPullToRefreshKit */ = {
 			isa = PBXGroup;
 			children = (
+				267690FB1AC5DEA800FCADF5 /* AbstractFunctionsCopyandPaste.txt */,
 				26296AD01A3E6974003D76A7 /* JHRefreshControl.h */,
 				26296AD11A3E6974003D76A7 /* JHRefreshControl.m */,
-				26296AD31A3E69F2003D76A7 /* JHCustomPTRTableViewController.h */,
-				26296AD41A3E69F2003D76A7 /* JHCustomPTRTableViewController.m */,
+				26FFF9D61A44968C009B92E8 /* JHLayerAnimationRefreshControl.h */,
+				26FFF9D71A44968C009B92E8 /* JHLayerAnimationRefreshControl.m */,
 				26296AD81A3F790D003D76A7 /* JHPullToRefreshKit.h */,
 			);
 			name = JHPullToRefreshKit;
@@ -173,6 +197,39 @@
 				26296AE61A400F6D003D76A7 /* BubbleRefreshControl.m */,
 			);
 			name = Bubbles;
+			sourceTree = "<group>";
+		};
+		269E86A01A9FC62400ED8BCE /* Yahoo News Digest */ = {
+			isa = PBXGroup;
+			children = (
+				269E86A11A9FC65000ED8BCE /* YahooRefreshControl.h */,
+				269E86A21A9FC65000ED8BCE /* YahooRefreshControl.m */,
+				269E86A41A9FC67400ED8BCE /* YahooViewController.h */,
+				269E86A51A9FC67400ED8BCE /* YahooViewController.m */,
+			);
+			name = "Yahoo News Digest";
+			sourceTree = "<group>";
+		};
+		26EDE7C21A4213B800E6FB02 /* Labeled */ = {
+			isa = PBXGroup;
+			children = (
+				26EDE7C31A42148200E6FB02 /* LabelRefreshControl.h */,
+				26EDE7C41A42148200E6FB02 /* LabelRefreshControl.m */,
+				26EDE7C61A4214B100E6FB02 /* LabelPTRTableViewController.h */,
+				26EDE7C71A4214B100E6FB02 /* LabelPTRTableViewController.m */,
+			);
+			name = Labeled;
+			sourceTree = "<group>";
+		};
+		26EDE7C91A42276E00E6FB02 /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				26EDE7CA1A42278200E6FB02 /* GooglePTRTableViewController.h */,
+				26EDE7CB1A42278200E6FB02 /* GooglePTRTableViewController.m */,
+				26EDE7CD1A4227A200E6FB02 /* GoogleRefreshControl.h */,
+				26EDE7CE1A4227A200E6FB02 /* GoogleRefreshControl.m */,
+			);
+			name = Google;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26296AB51A3E682E003D76A7 /* Main.storyboard in Resources */,
+				267690FC1AC5DEA800FCADF5 /* AbstractFunctionsCopyandPaste.txt in Resources */,
 				26296ABA1A3E682E003D76A7 /* LaunchScreen.xib in Resources */,
 				26296AB71A3E682E003D76A7 /* Images.xcassets in Resources */,
 			);
@@ -275,15 +333,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				269E86A31A9FC65000ED8BCE /* YahooRefreshControl.m in Sources */,
 				26296AB21A3E682E003D76A7 /* ViewController.m in Sources */,
 				26296ADC1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m in Sources */,
+				26EDE7C51A42148200E6FB02 /* LabelRefreshControl.m in Sources */,
 				26296AAF1A3E682E003D76A7 /* AppDelegate.m in Sources */,
-				26296AD51A3E69F2003D76A7 /* JHCustomPTRTableViewController.m in Sources */,
 				26296AE71A400F6D003D76A7 /* BubbleRefreshControl.m in Sources */,
+				26FFF9D81A44968C009B92E8 /* JHLayerAnimationRefreshControl.m in Sources */,
+				26EDE7C81A4214B100E6FB02 /* LabelPTRTableViewController.m in Sources */,
+				26EDE7CC1A42278200E6FB02 /* GooglePTRTableViewController.m in Sources */,
 				26296AAC1A3E682E003D76A7 /* main.m in Sources */,
 				26296ADF1A3FEA49003D76A7 /* ColorPTRTableViewController.m in Sources */,
 				26296AE41A400F25003D76A7 /* BubblesPTRTableViewController.m in Sources */,
+				26EDE7CF1A4227A200E6FB02 /* GoogleRefreshControl.m in Sources */,
 				26296AD21A3E6974003D76A7 /* JHRefreshControl.m in Sources */,
+				269E86A61A9FC67400ED8BCE /* YahooViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +538,7 @@
 				26296ACB1A3E682E003D76A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		26296ACC1A3E682E003D76A7 /* Build configuration list for PBXNativeTarget "JHPullToRefreshExampleProjTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +547,7 @@
 				26296ACE1A3E682E003D76A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
