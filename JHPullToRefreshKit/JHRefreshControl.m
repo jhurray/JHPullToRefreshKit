@@ -16,10 +16,6 @@
 // depends on type
 -(CGRect)calculatedFrame;
 
-// on refresh
-// allows for smoother transition to animationg state
--(void)smoothTransitionFromOffset:(CGFloat)fromOffset toOffset:(CGFloat)toOffset withSteps:(NSInteger)numSteps;
-
 // animation routing
 -(void)animateRefreshViewEnded;
 -(void)defaultAnimation;
@@ -253,29 +249,6 @@
 }
 
 // handling scrolling
-
--(void)smoothTransitionFromOffset:(CGFloat)fromOffset toOffset:(CGFloat)toOffset withSteps:(NSInteger)numSteps {
-    CGFloat difference = toOffset - fromOffset;
-    CGFloat stepIncrement = difference/(CGFloat)numSteps;
-    for (NSInteger i = 1; i <= numSteps; ++i) {
-        CGFloat newOffset = fromOffset + stepIncrement*i;
-        CGFloat pullRatio = MIN(MAX(0.0, -newOffset), self.height)/self.height;
-        
-        if (toOffset == -self.height) {
-            // going into refresh animation
-            self.refreshAnimationView.frame = CGRectMake(0, 0, kScreenWidth, ABS(newOffset));
-        } else{
-            // ending refresh animation
-            NSLog(@"in here");
-        }
-        CGFloat pullDistance = MAX(0.0, -newOffset);
-        [self handleScrollingOnAnimationView:self.refreshAnimationView
-                            withPullDistance:pullDistance
-                                   pullRatio:pullRatio
-                                pullVelocity:0.0];
-        [self setNeedsLayout];
-    }
-}
 
 -(void)setFrameForScrollingWithOffset:(CGFloat)offset {
     // offset is a negative value

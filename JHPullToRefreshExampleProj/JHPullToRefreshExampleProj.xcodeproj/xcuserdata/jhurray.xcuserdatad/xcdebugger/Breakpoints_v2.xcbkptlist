@@ -10,22 +10,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440493562.800612"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
-            landmarkName = "-smoothTransitionFromOffset:toOffset:withSteps:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
             timestampString = "440484832.222181"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -105,84 +89,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440493562.800612"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "-smoothTransitionFromOffset:toOffset:withSteps:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440493562.800612"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
-            landmarkName = "-smoothTransitionFromOffset:toOffset:withSteps:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440493562.800612"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "-smoothTransitionFromOffset:toOffset:withSteps:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[JHRefreshControl smoothTransitionFromOffset:toOffset:withSteps:]"
-                  moduleName = "JHPullToRefreshExampleProj"
-                  urlString = "file:///Users/jhurray/Desktop/repo-main/JHPullToRefreshKit/JHPullToRefreshKit/JHRefreshControl.m"
-                  timestampString = "440473761.054886"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "122">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[JHRefreshControl smoothTransitionFromOffset:toOffset:withSteps:]"
-                  moduleName = "JHPullToRefreshExampleProj"
-                  urlString = "file:///Users/jhurray/Desktop/repo-main/JHPullToRefreshKit/JHPullToRefreshKit/JHRefreshControl.m"
-                  timestampString = "440473761.055013"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "234">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "JHPullToRefreshExampleProj/BubbleRefreshControl.m"
             timestampString = "440493151.921743"
             startingColumnNumber = "9223372036854775807"
@@ -190,38 +96,6 @@
             startingLineNumber = "65"
             endingLineNumber = "65"
             landmarkName = "-setupRefreshControlForAnimationView:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440493562.800612"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "-smoothTransitionFromOffset:toOffset:withSteps:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "440493562.800612"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
-            landmarkName = "-smoothTransitionFromOffset:toOffset:withSteps:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
