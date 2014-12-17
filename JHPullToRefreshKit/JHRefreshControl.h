@@ -30,6 +30,12 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
     JHRefreshControlType _type;
 }
 
+// When true:
+//       Animated refresh view will stretch with table view (variable height)
+// When false:
+//       Animated refresh view will stay at the top (constant height)
+@property (nonatomic, assign) BOOL animationViewStretches;
+
 // Read only properties
 @property (nonatomic, readonly, getter=isRefreshing) BOOL refreshing;
 @property (nonatomic, readonly) CGFloat height;
@@ -50,8 +56,10 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 // called to add a subview to the animation view
 -(void)addSubviewToRefreshAnimationView:(UIView *)subview;
 
-// Abstract Instance Methods
-// Must be overriden in subclasses
+/**************************************
+    Abstract Instance Methods
+    Must be overriden in subclasses
+**************************************/
 
 // used to control UI elements during scrolling
 -(void)handleScrollingOnAnimationView:(UIView *)animationView
@@ -77,8 +85,11 @@ typedef NS_ENUM(NSInteger, JHRefreshControlType) {
 // UI changes to be animated each cycle
 -(void)animationCycleOnAnimationView:(UIView *)animationView;
 
-// Abstract Class Methods
-// Must be overriden in subclasses
+/**************************************
+    Abstract Class Methods
+    Must be overriden in subclasses
+**************************************/
+
 +(CGFloat)height;
 +(NSTimeInterval)animationDuration;
 +(NSTimeInterval)animationDelay;

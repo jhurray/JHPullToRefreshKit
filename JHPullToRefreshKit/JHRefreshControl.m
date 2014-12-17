@@ -14,6 +14,8 @@
 
 -(CGRect)calculatedFrame;
 
+-(void)smoothTransitionFromOffset:(CGFloat)fromOffset toOffset:(CGFloat)toOffset withSteps:(NSInteger)numSteps;
+
 @end
 
 @implementation JHRefreshControl
@@ -101,6 +103,7 @@
     self.backgroundColor = [UIColor clearColor];
     self.frame = [self calculatedFrame];
     // setup refresh animation view
+    self.animationViewStretches = YES;
     self.refreshAnimationView = [[UIView alloc] initWithFrame:self.bounds];
     self.refreshAnimationView.backgroundColor = [UIColor clearColor];
     [self addSubview:refreshAnimationView];
@@ -146,15 +149,18 @@
 }
 
 -(void)containingScrollViewDidEndDragging:(UIScrollView *)scrollView {
-    NSLog(@"%f, %f", scrollView.contentOffset.y, self.height);
-    if(-scrollView.contentOffset.y >
-       self.height /* + navheight */) {
+    //NSLog(@"%f, %f", scrollView.contentOffset.y, self.height);
+    CGFloat actualOffset = scrollView.contentOffset.y;
+    if(!self.isRefreshing && -actualOffset > self.height) {
         [self refresh];
+        if (self.animationViewStretches) {
+            [self smoothTransitionFromOffset:actualOffset toOffset:-self.height withSteps:3];
+        }
     }
 }
 
 -(void)containingScrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat actualOffset = scrollView.contentOffset.y /* + navheight */;
+    CGFloat actualOffset = scrollView.contentOffset.y;
     [self setFrameForScrollingWithOffset:actualOffset];
     if (!self.isRefreshing) {
         CGFloat pullDistance = MAX(0.0, -actualOffset);
@@ -166,6 +172,21 @@
                                 pullVelocity:velocity];
     }
     
+}
+
+-(void)smoothTransitionFromOffset:(CGFloat)fromOffset toOffset:(CGFloat)toOffset withSteps:(NSInteger)numSteps {
+    CGFloat difference = toOffset - fromOffset;
+    CGFloat stepIncrement = difference/(CGFloat)numSteps;
+    for (NSInteger i = 1; i <= numSteps; ++i) {
+        CGFloat newOffset = fromOffset + stepIncrement*i;
+        CGFloat pullRatio = MIN(MAX(0.0, -newOffset), self.height)/self.height;
+        self.refreshAnimationView.frame = CGRectMake(0, 0, kScreenWidth, ABS(newOffset));
+        [self handleScrollingOnAnimationView:self.refreshAnimationView
+                            withPullDistance:MAX(0.0, -newOffset)
+                                   pullRatio:pullRatio
+                                pullVelocity:0.0];
+        [self setNeedsLayout];
+    }
 }
 
 -(void)setFrameForScrollingWithOffset:(CGFloat)offset {
@@ -185,9 +206,12 @@
         self.bounds = CGRectMake(0, 0, kScreenWidth, self.height);
         // NSLog(@"calculated frame : %@", NSStringFromCGRect([self calculatedFrame]));
     }
-    // IF SAME SIZE AS CONTROL
-    //self.refreshAnimationView.frame = self.bounds;
-    self.refreshAnimationView.frame = CGRectMake(0, 0, kScreenWidth, self.height);
+    // set refresh animation view frame
+    if (self.animationViewStretches) {
+        self.refreshAnimationView.frame = self.bounds;
+    } else {
+        self.refreshAnimationView.frame = CGRectMake(0, 0, kScreenWidth, self.height);
+    }
 }
 
 
