@@ -12,9 +12,19 @@
 
 @interface JHRefreshControl()
 
+// original frame for the control
+// depends on type
 -(CGRect)calculatedFrame;
 
+// on refresh
+// allows for smoother transition to animationg state
 -(void)smoothTransitionFromOffset:(CGFloat)fromOffset toOffset:(CGFloat)toOffset withSteps:(NSInteger)numSteps;
+
+// animation routing
+-(void)animateRefreshViewEnded;
+-(void)defaultAnimation;
+-(void)keyframeAnimation;
+-(void)springAnimation;
 
 @end
 
@@ -48,6 +58,11 @@
     [self refresh];
 }
 
+-(void)resetAnimationView:(UIView *)animationView {
+    // should reset UI elements here
+    // called after refresh control finishes and is hidden
+}
+
 -(void)addSubviewToRefreshAnimationView:(UIView *)subview {
     [self.refreshAnimationView addSubview:subview];
 }
@@ -78,8 +93,12 @@
     MustOverride(); 
 }
 
--(void)animationCycleOnAnimationView:(UIView *)animationView {
+-(void)animationCycleForAnimationView:(UIView *)animationView {
     MustOverride();
+}
+
+-(void)exitAnimationForRefreshView:(UIView *)animationView withCompletion:(JHCompletionBlock)completion {
+    completion();
 }
 
 // CLASS ABSTRACTION
@@ -102,8 +121,10 @@
 -(void)setupRefreshControl {
     self.backgroundColor = [UIColor clearColor];
     self.frame = [self calculatedFrame];
+    self.animationType = JHRefreshControlAnimationTypeDefault;
+    self->animationOptions = 0;
     // setup refresh animation view
-    self.animationViewStretches = YES;
+    self.animationViewStretches = NO;
     self.refreshAnimationView = [[UIView alloc] initWithFrame:self.bounds];
     self.refreshAnimationView.backgroundColor = [UIColor clearColor];
     [self addSubview:refreshAnimationView];
@@ -132,29 +153,84 @@
 
 -(void)resetAnimation {
     [self setRefreshing:NO];
-    [self.delegate refreshControlDidEnd:self];
+    [self exitAnimationForRefreshView:self.refreshAnimationView withCompletion:^{
+        [self.delegate refreshControlDidEnd:self];
+        [self performSelector:@selector(resetAnimationView:)
+                   withObject:self.refreshAnimationView
+                   afterDelay:kPTRAnimationDuration];
+    }];
 }
 
 -(void)animateRefreshView {
     [self setupRefreshControlForAnimationView:self.refreshAnimationView];
-    [UIView animateWithDuration:self.animationDuration delay:self.animationDelay options:0 animations:^{
-        [self animationCycleOnAnimationView:self.refreshAnimationView];
+    switch (self.animationType) {
+        case JHRefreshControlAnimationTypeKeyFrame:
+            [self keyframeAnimation];
+            break;
+        case JHRefreshControlAnimationTypeSpring:
+            [self springAnimation];
+            break;
+        default:
+            [self defaultAnimation];
+            break;
+    }
+}
+
+-(void)animateRefreshViewEnded {
+    if (self.isRefreshing) {
+        [self animateRefreshView];
+    } else {
+        [self resetAnimation];
+    }
+}
+
+-(void)defaultAnimation {
+    [UIView animateWithDuration:self.animationDuration
+                          delay:self.animationDelay
+                            options:self->animationOptions
+                            animations:^{
+        [self animationCycleForAnimationView:self.refreshAnimationView];
     } completion:^(BOOL finished) {
-        if (self.isRefreshing) {
-            [self animateRefreshView];
-        } else {
-            [self resetAnimation];
-        }
+        [self animateRefreshViewEnded];
+    }];
+}
+-(void)keyframeAnimation {
+    [UIView animateKeyframesWithDuration:self.animationDuration
+                                   delay:self.animationDelay
+                                    options:self->animationOptions
+                                    animations:^{
+        [self animationCycleForAnimationView:self.refreshAnimationView];
+    } completion:^(BOOL finished) {
+        [self animateRefreshViewEnded];
+    }];
+}
+-(void)springAnimation {
+    [UIView animateWithDuration:self.animationDuration
+                          delay:self.animationDelay
+                            usingSpringWithDamping:0.8
+                            initialSpringVelocity:1.0
+                            options:self->animationOptions
+                            animations:^{
+        [self animationCycleForAnimationView:self.refreshAnimationView];
+    } completion:^(BOOL finished) {
+        [self animateRefreshViewEnded];
     }];
 }
 
+// from scroll view delegate
+
 -(void)containingScrollViewDidEndDragging:(UIScrollView *)scrollView {
-    //NSLog(@"%f, %f", scrollView.contentOffset.y, self.height);
     CGFloat actualOffset = scrollView.contentOffset.y;
     if(!self.isRefreshing && -actualOffset > self.height) {
         [self refresh];
         if (self.animationViewStretches) {
-            [self smoothTransitionFromOffset:actualOffset toOffset:-self.height withSteps:3];
+            [UIView animateWithDuration:kPTRAnimationDuration animations:^{
+                self.refreshAnimationView.frame = CGRectMake(0, 0, kScreenWidth, self.height);
+                [self handleScrollingOnAnimationView:self.refreshAnimationView
+                                    withPullDistance:self.height
+                                        pullRatio:1.0
+                                        pullVelocity:0.0];
+            }];
         }
     }
 }
@@ -166,13 +242,17 @@
         CGFloat pullDistance = MAX(0.0, -actualOffset);
         CGFloat pullRatio = MIN(MAX(0.0, pullDistance), self.height)/self.height;
         CGFloat velocity = [scrollView.panGestureRecognizer velocityInView:scrollView].y;
-        [self handleScrollingOnAnimationView:self.refreshAnimationView
-                            withPullDistance:pullDistance
-                                   pullRatio:pullRatio
-                                pullVelocity:velocity];
+        if (pullRatio != 0.0) {
+            [self handleScrollingOnAnimationView:self.refreshAnimationView
+                                            withPullDistance:pullDistance
+                                            pullRatio:pullRatio
+                                            pullVelocity:velocity];
+        }
     }
     
 }
+
+// handling scrolling
 
 -(void)smoothTransitionFromOffset:(CGFloat)fromOffset toOffset:(CGFloat)toOffset withSteps:(NSInteger)numSteps {
     CGFloat difference = toOffset - fromOffset;
@@ -180,9 +260,17 @@
     for (NSInteger i = 1; i <= numSteps; ++i) {
         CGFloat newOffset = fromOffset + stepIncrement*i;
         CGFloat pullRatio = MIN(MAX(0.0, -newOffset), self.height)/self.height;
-        self.refreshAnimationView.frame = CGRectMake(0, 0, kScreenWidth, ABS(newOffset));
+        
+        if (toOffset == -self.height) {
+            // going into refresh animation
+            self.refreshAnimationView.frame = CGRectMake(0, 0, kScreenWidth, ABS(newOffset));
+        } else{
+            // ending refresh animation
+            NSLog(@"in here");
+        }
+        CGFloat pullDistance = MAX(0.0, -newOffset);
         [self handleScrollingOnAnimationView:self.refreshAnimationView
-                            withPullDistance:MAX(0.0, -newOffset)
+                            withPullDistance:pullDistance
                                    pullRatio:pullRatio
                                 pullVelocity:0.0];
         [self setNeedsLayout];
@@ -195,7 +283,6 @@
         CGRect newFrame = CGRectMake(0, offset, kScreenWidth, ABS(offset));
         self.frame = newFrame;
         self.bounds = CGRectMake(0, 0, kScreenWidth, ABS(offset));
-        //NSLog(@"new frame : %@", NSStringFromCGRect(newFrame));
     }
     else {
         CGFloat newY = offset;
@@ -204,7 +291,6 @@
         }
         self.frame = CGRectMake(0, newY, kScreenWidth, self.height);
         self.bounds = CGRectMake(0, 0, kScreenWidth, self.height);
-        // NSLog(@"calculated frame : %@", NSStringFromCGRect([self calculatedFrame]));
     }
     // set refresh animation view frame
     if (self.animationViewStretches) {

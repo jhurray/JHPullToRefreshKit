@@ -43,8 +43,12 @@
     BubblesPTRTableViewController *bubbleVC = [[BubblesPTRTableViewController alloc] initWithRefreshControl:bubbleControl];
     bubbleVC.title = @"Bubble - Background";
     
-    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[colorVC, bubbleVC]];
+    BubbleRefreshControl *bubbleControl2 = [[BubbleRefreshControl alloc] initWithType:JHRefreshControlTypeSlideDown];
+    BubblesPTRTableViewController *bubbleVC2 = [[BubblesPTRTableViewController alloc] initWithRefreshControl:bubbleControl2];
+    bubbleVC2.title = @"Bubble - SlideDown";
     
+    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[colorVC, bubbleVC, bubbleVC2]];
+    vc.title = @"JHRefreshControl Example";
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     window.rootViewController = nav;

@@ -9,7 +9,9 @@
 
 @interface BubbleRefreshControl()
 
-@property (nonatomic, strong) UIView *bubble;
+@property (nonatomic, strong) UIView *bubble1;
+@property (nonatomic, strong) UIView *bubble2;
+@property (nonatomic, strong) UIView *bubble3;
 
 @end
 
@@ -17,12 +19,31 @@
 
 -(id)initWithType:(JHRefreshControlType)type {
     if (self = [super initWithType:type]){
-        self.bubble = [[UIView alloc] initWithFrame:CGRectZero];
-        self.bubble.backgroundColor = [UIColor whiteColor];
+        self.bubble1 = [self setupBubble];
+        self.bubble2 = [self setupBubble];
+        self.bubble3 = [self setupBubble];
         self.backgroundColor = [UIColor blueColor];
-        [self addSubviewToRefreshAnimationView:self.bubble];
+        self.animationType = JHRefreshControlAnimationTypeKeyFrame;
+        self.animationViewStretches = YES;
+        self->animationOptions = UIViewKeyframeAnimationOptionCalculationModeLinear;
     }
     return self;
+}
+
+-(UIView *)setupBubble {
+    UIView *bubble = [[UIView alloc] initWithFrame:CGRectZero];
+    bubble.backgroundColor = [UIColor whiteColor];
+    CGFloat size = self.height*0.3;
+    [bubble setFrame:CGRectMake(0, 0, size, size)];
+    bubble.layer.cornerRadius = size/2;
+    [self addSubviewToRefreshAnimationView:bubble];
+    return bubble;
+}
+
+-(void)resetAnimationView:(UIView *)animationView {
+    self.bubble1.alpha = 1.0;
+    self.bubble2.alpha = 1.0;
+    self.bubble3.alpha = 1.0;
 }
 
 -(void)handleScrollingOnAnimationView:(UIView *)animationView
@@ -30,29 +51,69 @@
                             pullRatio:(CGFloat)pullRatio
                          pullVelocity:(CGFloat)pullVelocity {
     // used to control UI elements during scrolling
-    CGFloat size = self.height*0.6*pullRatio;
-    [self.bubble setFrame:CGRectMake(0, 0, size, size)];
-    [self.bubble setCenter:CGPointMake(animationView.bounds.size.width/2, animationView.bounds.size.height/2)];
+    self.bubble1.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
+    self.bubble2.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
+    self.bubble3.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
+    CGFloat yCenter = animationView.bounds.size.height/2;
+    [self.bubble1 setCenter:CGPointMake(kScreenWidth/3, yCenter)];
+    [self.bubble2 setCenter:CGPointMake(kScreenWidth*3/6, yCenter)];
+    [self.bubble3 setCenter:CGPointMake(kScreenWidth*2/3, yCenter)];
 }
 
 -(void)setupRefreshControlForAnimationView:(UIView *)animationView {
     // Set refresh animation to correct state before a new cycle begins
-    self.bubble.transform = CGAffineTransformMakeRotation(0);
+    self.bubble1.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    self.bubble2.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    self.bubble3.transform = CGAffineTransformMakeScale(1.0, 1.0);
 }
 
--(void)animationCycleOnAnimationView:(UIView *)animationView {
-    // UI changes to be animated each cycle
-    self.bubble.transform = CGAffineTransformMakeRotation(M_PI/2);
+-(void)animationCycleForAnimationView:(UIView *)animationView {
+    [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.3 animations:^{
+        self.bubble1.transform = CGAffineTransformMakeScale(1.8, 1.8);
+    }];
+    [UIView addKeyframeWithRelativeStartTime:0.3 relativeDuration:0.3 animations:^{
+        self.bubble1.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        self.bubble2.transform = CGAffineTransformMakeScale(1.8, 1.8);
+    }];
+    [UIView addKeyframeWithRelativeStartTime:0.6 relativeDuration:0.3 animations:^{
+        self.bubble2.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        self.bubble3.transform = CGAffineTransformMakeScale(1.8, 1.8);
+    }];
+    [UIView addKeyframeWithRelativeStartTime:0.9 relativeDuration:0.1 animations:^{
+        self.bubble3.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    }];
+}
+
+-(void)exitAnimationForRefreshView:(UIView *)animationView withCompletion:(JHCompletionBlock)completion {
+    [UIView animateKeyframesWithDuration:0.7 delay:0.0 options:0 animations:^{
+        __block CGFloat yCenter = animationView.bounds.size.height/2;
+        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.4 animations:^{
+            [self.bubble1 setCenter:CGPointMake(kScreenWidth/2, yCenter)];
+            [self.bubble3 setCenter:CGPointMake(kScreenWidth/2, yCenter)];
+            self.bubble2.transform = CGAffineTransformMakeScale(2.5, 2.5);
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.4 relativeDuration:0.3 animations:^{
+            self.bubble1.transform = CGAffineTransformMakeScale(0.1, 0.1);
+            self.bubble2.transform = CGAffineTransformMakeScale(0.1, 0.1);
+            self.bubble3.transform = CGAffineTransformMakeScale(0.1, 0.1);
+            self.bubble1.alpha = 0.0;
+            self.bubble2.alpha = 0.0;
+            self.bubble3.alpha = 0.0;
+        }];
+        
+    } completion:^(BOOL finished) {
+        completion();
+    }];
 }
 
 +(CGFloat)height {
     //return the height
-    return 90.0;
+    return 80.0;
 }
 
 +(NSTimeInterval)animationDuration {
     //return the animation duration
-    return 0.4;
+    return 1.0;
 }
 
 +(NSTimeInterval)animationDelay {

@@ -15,8 +15,10 @@
 -(id)initWithRefreshControl:(JHRefreshControl *)refreshControl;
 -(id)initWithRefreshControl:(JHRefreshControl *)refreshControl tableViewStyle:(UITableViewStyle)style ;
 
-// Abstract method
-// Must override
+/**************************************
+ Abstract Instance Method
+ Must be overriden in subclasses
+ **************************************/
 -(void)tableViewWasPulledToRefresh;
 
 @end

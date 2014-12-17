@@ -16,4 +16,7 @@
 #define kScreenWidth [[UIScreen mainScreen] bounds].size.width
 #define kScreenHeight [[UIScreen mainScreen] bounds].size.height
 
+// Animation duration
+#define kPTRAnimationDuration 0.3
+
 #endif

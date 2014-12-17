@@ -23,6 +23,7 @@
         self.colors = colors;
         self->index = 0;
         self.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
+        self.animationViewStretches = TRUE;
     }
     return self;
 }
@@ -42,7 +43,7 @@
     }
 }
 
--(void)animationCycleOnAnimationView:(UIView *)animationView {
+-(void)animationCycleForAnimationView:(UIView *)animationView {
     // UI changes to be animated each cycle
     animationView.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
 }

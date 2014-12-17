@@ -48,7 +48,7 @@
 // Private
 
 -(void) setupWithRefreshControl:(JHRefreshControl *)refreshControl {
-    resetAnimationDuration = 0.3;
+    resetAnimationDuration = kPTRAnimationDuration;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     _refreshControl = refreshControl;
     _refreshControl.delegate = self;
