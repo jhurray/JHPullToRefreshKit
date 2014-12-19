@@ -15,6 +15,7 @@
     CGFloat fillPercent;
     CGFloat radius;
     CGFloat rotation;
+    CGFloat rotationIncrement;
     NSInteger colorIndex;
     BOOL filling;
 }
@@ -40,12 +41,13 @@
 -(void)setup {
     self.backgroundColor = [UIColor whiteColor];
     self.animationType = JHRefreshControlAnimationTypeKeyFrame;
-    startPercent = 0.1;
-    endPercent = 0.85;
+    startPercent = (M_PI/8.0)/(2*M_PI);
+    endPercent = (13*M_PI/8.0)/(2*M_PI);
     fillPercent = endPercent-startPercent;
     rotation = 0;
+    rotationIncrement = 14*M_PI/8.0;
     radius = 15.0;
-    filling = YES;
+    filling = NO;
     CGPoint animationViewCenter = CGPointMake(kScreenWidth/2, self.height/2);
     
     colorIndex = 0;
@@ -92,6 +94,7 @@
     // should reset UI elements here
     // called after refresh control finishes and is hidden
     rotation = 0;
+    [self.circleView setAlpha:1.0];
     self.circleView.transform = CGAffineTransformMakeRotation(rotation);
     colorIndex = 0;
     self.arcLayer.strokeEnd = startPercent;
@@ -100,9 +103,6 @@
 
 -(void)setupRefreshControlForAnimationView:(UIView *)animationView {
     // Set refresh animation to correct state before a new cycle begins
-    self->filling = !self->filling;
-    rotation += M_PI*13/8.0;
-    [self.arcLayer removeAnimationForKey:@"google"];
     self.arcLayer.strokeEnd = self->filling ? endPercent : startPercent;
     if (filling) {
         colorIndex++;
@@ -113,6 +113,15 @@
 -(void)animateRefreshView {
     [self setupRefreshControlForAnimationView:self.refreshAnimationView];
     [CATransaction begin];
+    
+    [CATransaction setCompletionBlock:^{
+        self->filling = !self->filling;
+        [self.arcLayer removeAnimationForKey:@"google"];
+        rotation += rotationIncrement;
+        rotationIncrement = self->filling ? M_PI*5/8.0 : M_PI*15/8.0;
+        [self animateRefreshViewEnded];
+    }];
+    
     CGFloat strokeStartVal = self->filling ? startPercent : endPercent;
     CGFloat strokeEndVal = self->filling ? endPercent : startPercent;
     
@@ -122,28 +131,53 @@
     
     CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.fromValue = [NSNumber numberWithFloat:rotation];
-    rotationAnimation.toValue = [NSNumber numberWithFloat:rotation+M_PI*13/8.0];
+    rotationAnimation.toValue = [NSNumber numberWithFloat:rotation+rotationIncrement];
     
     CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
     [animationGroup setAnimations:@[animateStrokeFill, rotationAnimation]];
     [animationGroup setDuration:self.animationDuration];
     [animationGroup setRemovedOnCompletion:NO];
-    [animationGroup setDelegate:self];
     [animationGroup setFillMode:kCAFillModeForwards];
     
     [self.arcLayer addAnimation:animationGroup forKey:@"google"];
     [CATransaction commit];
 }
 
--(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-    [self animateRefreshViewEnded];
-}
-
 -(void)exitAnimationForRefreshView:(UIView *)animationView withCompletion:(JHCompletionBlock)completion {
     // animation for when refreshing is done.
     // does not need to be overridden
     // if empty no animation will be executed
-    completion();
+    [CATransaction begin];
+    
+    [CATransaction setCompletionBlock:^{
+        [self.circleView setAlpha:0];
+        [self.arcLayer removeAnimationForKey:@"google"];
+        completion();
+    }];
+    
+    CGFloat strokeStartVal = _arcLayer.strokeEnd;
+    CGFloat strokeEndVal = 0;
+    
+    CABasicAnimation *animateStrokeFill = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    animateStrokeFill.fromValue = [NSNumber numberWithFloat:strokeStartVal];
+    animateStrokeFill.toValue = [NSNumber numberWithFloat:strokeEndVal];
+    
+    CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.fromValue = [NSNumber numberWithFloat:rotation];
+    rotationAnimation.toValue = [NSNumber numberWithFloat:rotation+rotationIncrement];
+    
+    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacityAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    opacityAnimation.toValue = [NSNumber numberWithFloat:0.0];
+    
+    CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
+    [animationGroup setAnimations:@[animateStrokeFill, rotationAnimation, opacityAnimation]];
+    [animationGroup setDuration:self.animationDuration];
+    [animationGroup setRemovedOnCompletion:NO];
+    [animationGroup setFillMode:kCAFillModeForwards];
+    
+    [self.arcLayer addAnimation:animationGroup forKey:@"google"];
+    [CATransaction commit];
 }
 
 +(CGFloat)height {
@@ -153,7 +187,7 @@
 
 +(NSTimeInterval)animationDuration {
     //return the animation duration
-    return 0.75;
+    return 0.6;
 }
 
 +(NSTimeInterval)animationDelay {

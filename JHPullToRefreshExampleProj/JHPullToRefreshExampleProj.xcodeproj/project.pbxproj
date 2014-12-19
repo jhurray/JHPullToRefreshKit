@@ -24,6 +24,7 @@
 		26EDE7C81A4214B100E6FB02 /* LabelPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7C71A4214B100E6FB02 /* LabelPTRTableViewController.m */; };
 		26EDE7CC1A42278200E6FB02 /* GooglePTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7CB1A42278200E6FB02 /* GooglePTRTableViewController.m */; };
 		26EDE7CF1A4227A200E6FB02 /* GoogleRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7CE1A4227A200E6FB02 /* GoogleRefreshControl.m */; };
+		26FFF9D81A44968C009B92E8 /* JHLayerAnimationRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FFF9D71A44968C009B92E8 /* JHLayerAnimationRefreshControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		26EDE7CB1A42278200E6FB02 /* GooglePTRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooglePTRTableViewController.m; sourceTree = "<group>"; };
 		26EDE7CD1A4227A200E6FB02 /* GoogleRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleRefreshControl.h; sourceTree = "<group>"; };
 		26EDE7CE1A4227A200E6FB02 /* GoogleRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleRefreshControl.m; sourceTree = "<group>"; };
+		26FFF9D61A44968C009B92E8 /* JHLayerAnimationRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JHLayerAnimationRefreshControl.h; path = ../../JHPullToRefreshKit/JHLayerAnimationRefreshControl.h; sourceTree = "<group>"; };
+		26FFF9D71A44968C009B92E8 /* JHLayerAnimationRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JHLayerAnimationRefreshControl.m; path = ../../JHPullToRefreshKit/JHLayerAnimationRefreshControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,8 @@
 			children = (
 				26296AD01A3E6974003D76A7 /* JHRefreshControl.h */,
 				26296AD11A3E6974003D76A7 /* JHRefreshControl.m */,
+				26FFF9D61A44968C009B92E8 /* JHLayerAnimationRefreshControl.h */,
+				26FFF9D71A44968C009B92E8 /* JHLayerAnimationRefreshControl.m */,
 				26296AD31A3E69F2003D76A7 /* JHCustomPTRTableViewController.h */,
 				26296AD41A3E69F2003D76A7 /* JHCustomPTRTableViewController.m */,
 				26296AD81A3F790D003D76A7 /* JHPullToRefreshKit.h */,
@@ -317,6 +322,7 @@
 				26296AAF1A3E682E003D76A7 /* AppDelegate.m in Sources */,
 				26296AD51A3E69F2003D76A7 /* JHCustomPTRTableViewController.m in Sources */,
 				26296AE71A400F6D003D76A7 /* BubbleRefreshControl.m in Sources */,
+				26FFF9D81A44968C009B92E8 /* JHLayerAnimationRefreshControl.m in Sources */,
 				26EDE7C81A4214B100E6FB02 /* LabelPTRTableViewController.m in Sources */,
 				26EDE7CC1A42278200E6FB02 /* GooglePTRTableViewController.m in Sources */,
 				26296AAC1A3E682E003D76A7 /* main.m in Sources */,

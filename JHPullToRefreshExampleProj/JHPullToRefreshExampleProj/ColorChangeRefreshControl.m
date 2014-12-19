@@ -28,7 +28,6 @@
 -(void)setup {
     self->index = 0;
     self.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
-    self.animationViewStretches = TRUE;
 }
 
 -(void)handleScrollingOnAnimationView:(UIView *)animationView
@@ -48,7 +47,7 @@
 
 -(void)animationCycleForAnimationView:(UIView *)animationView {
     // UI changes to be animated each cycle
-    animationView.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
+    self.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
 }
 
 +(CGFloat)height {
