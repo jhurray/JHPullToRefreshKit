@@ -17,7 +17,6 @@
 -(CGRect)calculatedFrame;
 
 // animation routing
--(void)animateRefreshViewEnded;
 -(void)defaultAnimation;
 -(void)keyframeAnimation;
 -(void)springAnimation;
@@ -34,6 +33,7 @@
     if(self = [super init]) {
         _type = type;
         [self setupRefreshControl];
+        [self setup];
     }
     return self;
 }
@@ -77,6 +77,10 @@
 
 // INSTANCE ABSTRACTION
 // MUST BE OVERRIDDEN
+
+-(void)setup {
+    MustOverride();
+}
 
 -(void)handleScrollingOnAnimationView:(UIView *)animationView
                         withPullDistance:(CGFloat)pullDistance
@@ -267,9 +271,9 @@
     }
     // set refresh animation view frame
     if (self.animationViewStretches) {
-        self.refreshAnimationView.frame = self.bounds;
-    } else {
-        self.refreshAnimationView.frame = CGRectMake(0, 0, kScreenWidth, self.height);
+        // give the appearance of stretching
+        CGPoint center = CGPointMake(kScreenWidth/2, self.bounds.size.height/2);
+        self.refreshAnimationView.center = center;
     }
 }
 

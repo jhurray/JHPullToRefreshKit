@@ -21,11 +21,14 @@
 -(id)initWithType:(JHRefreshControlType)type andColors:(NSArray *)colors {
     if (self = [super initWithType:type]){
         self.colors = colors;
-        self->index = 0;
-        self.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
-        self.animationViewStretches = TRUE;
     }
     return self;
+}
+
+-(void)setup {
+    self->index = 0;
+    self.backgroundColor = (UIColor *)[self.colors objectAtIndex:index];
+    self.animationViewStretches = TRUE;
 }
 
 -(void)handleScrollingOnAnimationView:(UIView *)animationView

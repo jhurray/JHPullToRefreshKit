@@ -22,6 +22,8 @@
 		26296AE71A400F6D003D76A7 /* BubbleRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AE61A400F6D003D76A7 /* BubbleRefreshControl.m */; };
 		26EDE7C51A42148200E6FB02 /* LabelRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7C41A42148200E6FB02 /* LabelRefreshControl.m */; };
 		26EDE7C81A4214B100E6FB02 /* LabelPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7C71A4214B100E6FB02 /* LabelPTRTableViewController.m */; };
+		26EDE7CC1A42278200E6FB02 /* GooglePTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7CB1A42278200E6FB02 /* GooglePTRTableViewController.m */; };
+		26EDE7CF1A4227A200E6FB02 /* GoogleRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7CE1A4227A200E6FB02 /* GoogleRefreshControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,10 @@
 		26EDE7C41A42148200E6FB02 /* LabelRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelRefreshControl.m; sourceTree = "<group>"; };
 		26EDE7C61A4214B100E6FB02 /* LabelPTRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelPTRTableViewController.h; sourceTree = "<group>"; };
 		26EDE7C71A4214B100E6FB02 /* LabelPTRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelPTRTableViewController.m; sourceTree = "<group>"; };
+		26EDE7CA1A42278200E6FB02 /* GooglePTRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GooglePTRTableViewController.h; sourceTree = "<group>"; };
+		26EDE7CB1A42278200E6FB02 /* GooglePTRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooglePTRTableViewController.m; sourceTree = "<group>"; };
+		26EDE7CD1A4227A200E6FB02 /* GoogleRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleRefreshControl.h; sourceTree = "<group>"; };
+		26EDE7CE1A4227A200E6FB02 /* GoogleRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleRefreshControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,7 @@
 				26296AB31A3E682E003D76A7 /* Main.storyboard */,
 				26296AB61A3E682E003D76A7 /* Images.xcassets */,
 				26296AB81A3E682E003D76A7 /* LaunchScreen.xib */,
+				26EDE7C91A42276E00E6FB02 /* Google */,
 				26EDE7C21A4213B800E6FB02 /* Labeled */,
 				26296AE11A400EC4003D76A7 /* Bubbles */,
 				26296AE01A3FEA5F003D76A7 /* Colors */,
@@ -191,6 +198,17 @@
 				26EDE7C71A4214B100E6FB02 /* LabelPTRTableViewController.m */,
 			);
 			name = Labeled;
+			sourceTree = "<group>";
+		};
+		26EDE7C91A42276E00E6FB02 /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				26EDE7CA1A42278200E6FB02 /* GooglePTRTableViewController.h */,
+				26EDE7CB1A42278200E6FB02 /* GooglePTRTableViewController.m */,
+				26EDE7CD1A4227A200E6FB02 /* GoogleRefreshControl.h */,
+				26EDE7CE1A4227A200E6FB02 /* GoogleRefreshControl.m */,
+			);
+			name = Google;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,9 +318,11 @@
 				26296AD51A3E69F2003D76A7 /* JHCustomPTRTableViewController.m in Sources */,
 				26296AE71A400F6D003D76A7 /* BubbleRefreshControl.m in Sources */,
 				26EDE7C81A4214B100E6FB02 /* LabelPTRTableViewController.m in Sources */,
+				26EDE7CC1A42278200E6FB02 /* GooglePTRTableViewController.m in Sources */,
 				26296AAC1A3E682E003D76A7 /* main.m in Sources */,
 				26296ADF1A3FEA49003D76A7 /* ColorPTRTableViewController.m in Sources */,
 				26296AE41A400F25003D76A7 /* BubblesPTRTableViewController.m in Sources */,
+				26EDE7CF1A4227A200E6FB02 /* GoogleRefreshControl.m in Sources */,
 				26296AD21A3E6974003D76A7 /* JHRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,19 +16,18 @@
 
 @implementation LabelRefreshControl
 
--(id)initWithType:(JHRefreshControlType)type {
-    if ([super initWithType:type]){
-        self.backgroundColor = [UIColor lightGrayColor];
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-        self.label.adjustsFontSizeToFitWidth = YES;
-        [self.label setTextAlignment:NSTextAlignmentCenter];
-        self.label.text = @"pull down";
-        self.animationViewStretches = YES;
-        [self addSubviewToRefreshAnimationView:self.label];
-        self->animationOptions = UIViewAnimationOptionAutoreverse;
-        self.animationType = JHRefreshControlAnimationTypeSpring;
-    }
-    return self;
+-(void)setup {
+    self.backgroundColor = [UIColor purpleColor];
+    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
+    self.label.adjustsFontSizeToFitWidth = YES;
+    self.label.textColor = [UIColor whiteColor];
+    self.label.center = CGPointMake(kScreenWidth/2, self.height/2);
+    [self.label setTextAlignment:NSTextAlignmentCenter];
+    self.label.text = @"pull down";
+    self.animationViewStretches = YES;
+    [self addSubviewToRefreshAnimationView:self.label];
+    self->animationOptions = UIViewAnimationOptionAutoreverse;
+    self.animationType = JHRefreshControlAnimationTypeSpring;
 }
 
 -(void)handleScrollingOnAnimationView:(UIView *)animationView
@@ -36,7 +35,6 @@
                             pullRatio:(CGFloat)pullRatio
                          pullVelocity:(CGFloat)pullVelocity {
     // used to control UI elements during scrolling
-    self.label.center = CGPointMake(kScreenWidth/2, animationView.bounds.size.height/2);
     if (pullRatio > 0.75) {
         self.label.layer.transform = CATransform3DMakeRotation(M_PI*(pullRatio-0.75)*8, 1, 0, 0);
         if (pullRatio >0.875) {

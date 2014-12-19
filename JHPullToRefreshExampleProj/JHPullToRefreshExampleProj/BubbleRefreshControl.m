@@ -9,6 +9,9 @@
 
 @interface BubbleRefreshControl()
 
+-(UIView *)setupBubble;
+-(void)setBubbleCenters;
+
 @property (nonatomic, strong) UIView *bubble1;
 @property (nonatomic, strong) UIView *bubble2;
 @property (nonatomic, strong) UIView *bubble3;
@@ -17,17 +20,23 @@
 
 @implementation BubbleRefreshControl
 
--(id)initWithType:(JHRefreshControlType)type {
-    if (self = [super initWithType:type]){
-        self.bubble1 = [self setupBubble];
-        self.bubble2 = [self setupBubble];
-        self.bubble3 = [self setupBubble];
-        self.backgroundColor = [UIColor blueColor];
-        self.animationType = JHRefreshControlAnimationTypeKeyFrame;
-        self.animationViewStretches = YES;
-        self->animationOptions = UIViewKeyframeAnimationOptionCalculationModeLinear;
-    }
-    return self;
+-(void)setup {
+    self.bubble1 = [self setupBubble];
+    self.bubble2 = [self setupBubble];
+    self.bubble3 = [self setupBubble];
+    [self setBubbleCenters];
+    
+    self.backgroundColor = [UIColor blueColor];
+    self.animationType = JHRefreshControlAnimationTypeKeyFrame;
+    self.animationViewStretches = YES;
+    self->animationOptions = UIViewKeyframeAnimationOptionCalculationModeLinear;
+}
+
+-(void)setBubbleCenters {
+    CGFloat yCenter = self.height/2;
+    [self.bubble1 setCenter:CGPointMake(kScreenWidth/3, yCenter)];
+    [self.bubble2 setCenter:CGPointMake(kScreenWidth*3/6, yCenter)];
+    [self.bubble3 setCenter:CGPointMake(kScreenWidth*2/3, yCenter)];
 }
 
 -(UIView *)setupBubble {
@@ -44,6 +53,7 @@
     self.bubble1.alpha = 1.0;
     self.bubble2.alpha = 1.0;
     self.bubble3.alpha = 1.0;
+    [self setBubbleCenters];
 }
 
 -(void)handleScrollingOnAnimationView:(UIView *)animationView
@@ -54,10 +64,6 @@
     self.bubble1.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
     self.bubble2.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
     self.bubble3.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
-    CGFloat yCenter = animationView.bounds.size.height/2;
-    [self.bubble1 setCenter:CGPointMake(kScreenWidth/3, yCenter)];
-    [self.bubble2 setCenter:CGPointMake(kScreenWidth*3/6, yCenter)];
-    [self.bubble3 setCenter:CGPointMake(kScreenWidth*2/3, yCenter)];
 }
 
 -(void)setupRefreshControlForAnimationView:(UIView *)animationView {

@@ -15,6 +15,9 @@
 #import "LabelPTRTableViewController.h"
 #import "LabelRefreshControl.h"
 
+#import "GooglePTRTableViewController.h"
+#import "GoogleRefreshControl.h"
+
 #import "ViewController.h"
 
 #import "AppDelegate.h"
@@ -40,7 +43,11 @@
                                                                   [UIColor greenColor],
                                                                   [UIColor cyanColor]]];
     ColorPTRTableViewController *colorVC = [[ColorPTRTableViewController alloc] initWithRefreshControl:refreshControl];
-    colorVC.title = @"Colors - SlideDown";
+    colorVC.title = @"Colors";
+    
+    GoogleRefreshControl *googleControl = [[GoogleRefreshControl alloc] initWithType:JHRefreshControlTypeBackground];
+    GooglePTRTableViewController *googleVC = [[GooglePTRTableViewController alloc] initWithRefreshControl:googleControl];
+    googleVC.title = @"Google";
     
     BubbleRefreshControl *bubbleControl = [[BubbleRefreshControl alloc] initWithType:JHRefreshControlTypeBackground];
     BubblesPTRTableViewController *bubbleVC = [[BubblesPTRTableViewController alloc] initWithRefreshControl:bubbleControl];
@@ -59,7 +66,7 @@
     LabelPTRTableViewController *labelVC2 = [[LabelPTRTableViewController alloc] initWithRefreshControl:labelControl2];
     labelVC2.title = @"Instructions - Doesn't Stretch";
     
-    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[colorVC, bubbleVC, bubbleVC2, labelVC, labelVC2]];
+    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[colorVC, googleVC, bubbleVC, bubbleVC2, labelVC, labelVC2]];
     vc.title = @"JHRefreshControl Example";
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];

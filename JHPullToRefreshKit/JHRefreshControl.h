@@ -119,6 +119,10 @@ typedef void (^JHCompletionBlock)(void);
     Must be overriden in subclasses
 **************************************/
 
+// use this to setup the refresh control.
+// put setup code here instead of init
+-(void)setup;
+
 // used to control UI elements during scrolling
 -(void)handleScrollingOnAnimationView:(UIView *)animationView
                      withPullDistance:(CGFloat)pullDistance
@@ -164,45 +168,50 @@ typedef void (^JHCompletionBlock)(void);
 /*
  COPY AND PASTE TO OVERRIDE functions
  
- -(void)handleScrollingOnAnimationView:(UIView *)animationView
+-(void)setup {
+    // use this to setup the refresh control.
+    // put setup code here instead of init
+}
+ 
+-(void)handleScrollingOnAnimationView:(UIView *)animationView
                          withPullDistance:(CGFloat)pullDistance
                          pullRatio:(CGFloat)pullRatio
                          pullVelocity:(CGFloat)pullVelocity {
     // used to control UI elements during scrolling
- }
+}
 
 -(void)resetAnimationView:(UIView *)animationView {
     // should reset UI elements here
     // called after refresh control finishes and is hidden
- }
+}
  
 -(void)setupRefreshControlForAnimationView:(UIView *)animationView {
     // Set refresh animation to correct state before a new cycle begins
- }
+}
  
 -(void)animationCycleFor
  AnimationView:(UIView *)animationView {
     // UI changes to be animated each cycle
- }
+}
  
 -(void)exitAnimationForRefreshView:(UIView *)animationView withCompletion:(JHCompletionBlock)completion {
     // animation for when refreshing is done.
     // does not need to be overridden
     // if empty no animation will be executed
     completion();
- }
+}
  
- +(CGFloat)height {
++(CGFloat)height {
     //return the height
- }
+}
  
- +(NSTimeInterval)animationDuration {
++(NSTimeInterval)animationDuration {
     //return the animation duration
- }
+}
  
- +(NSTimeInterval)animationDelay {
++(NSTimeInterval)animationDelay {
     //return the animation delay
- }
+}
 
 */
 
@@ -229,6 +238,10 @@ typedef void (^JHCompletionBlock)(void);
 // override to completely change animation pattern
 // (For example conform to CAAnimation with animation delegate as completion)
 -(void)animateRefreshView;
+
+// called when the animation ends
+// either recurses or resets and hides
+-(void)animateRefreshViewEnded;
 
 // calls refresh control delegate
 -(void)resetAnimation;
