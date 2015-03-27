@@ -50,7 +50,9 @@ You can add the refresh control to a scroll view in one line after you initializ
 
 ##<a name="subclassing"></a>Subclassing JHRefreshControl
 
-**JHRefreshControl** is an abstract base class, which means there are some functions you need to override. The following methods must be implemented or your app will crash. You can find a section of code to copy and paste in *JHRefreshControl.h* with all the methods for your .m file. 
+**JHRefreshControl** is an abstract base class, which means there are some functions you need to override. The following methods must be implemented or your app will crash. You can find a section of code to copy and paste in [AbstractFunctionsCopyandPaste.txt](./JHPullToRefreshKit/AbstractFunctionsCopyandPaste.txt) with all the methods for your .m file. 
+
+A great example can be found in [ColorChangeRefreshControl.m](./JHPullToRefreshExampleProj/JHPullToRefreshExampleProj/ColorChangeRefreshControl.m)
 
 ####Abstract Class Methods:
 ```objective-c

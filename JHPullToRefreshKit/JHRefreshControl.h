@@ -223,10 +223,6 @@ typedef void (^JHCompletionBlock)(void);
 +(NSTimeInterval)animationDuration {
     //return the animation duration
 }
- 
-+(NSTimeInterval)animationDelay {
-    //return the animation delay
-}
 
 */
 

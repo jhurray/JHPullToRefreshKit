@@ -63,6 +63,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bubbles"];
     }
     cell.textLabel.text = self.title;
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
     return cell;
 }
 

@@ -46,9 +46,11 @@
     YahooViewController *yahooVC = [[YahooViewController alloc] initWithStyle:UITableViewStylePlain];
     yahooVC.title = @"Yahoo News Digest";
     
-    
     BubblesPTRTableViewController *bubbleVC = [[BubblesPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    bubbleVC.title = @"Style = Background - AnchorPostion = Top";
+    bubbleVC.title = @"Bubbles";
+    
+    BubblesPTRTableViewController *bubbleVC1 = [[BubblesPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    bubbleVC1.title = @"Style = Background - AnchorPostion = Top";
     
     BubblesPTRTableViewController *bubbleVC2 = [[BubblesPTRTableViewController alloc] initWithStyle:UITableViewStylePlain];
     bubbleVC2.title = @"Style = SlideDown - AnchorPostion = Top";
@@ -67,7 +69,7 @@
     
 
     
-    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[@[colorVC, googleVC, yahooVC], @[bubbleVC, bubbleVC2, bubbleVC3, bubbleVC4, bubbleVC5, bubbleVC6]]];
+    ViewController *vc = [[ViewController alloc] initWithViewControllers:@[@[colorVC, googleVC, yahooVC, bubbleVC], @[bubbleVC1, bubbleVC2, bubbleVC3, bubbleVC4, bubbleVC5, bubbleVC6]]];
     vc.title = @"JHRefreshControl Example";
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];

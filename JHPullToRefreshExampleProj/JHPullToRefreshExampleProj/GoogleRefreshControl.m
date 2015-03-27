@@ -171,9 +171,4 @@
     return 0.6;
 }
 
-+(NSTimeInterval)animationDelay {
-    //return the animation delay
-    return 0.0;
-}
-
 @end

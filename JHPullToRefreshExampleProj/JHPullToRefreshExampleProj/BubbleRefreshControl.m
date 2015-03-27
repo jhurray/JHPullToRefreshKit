@@ -61,7 +61,6 @@
                             pullRatio:(CGFloat)pullRatio
                          pullVelocity:(CGFloat)pullVelocity {
     // used to control UI elements during scrolling
-    NSLog(@"%f", pullRatio);
     self.bubble1.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
     self.bubble2.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
     self.bubble3.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
@@ -121,11 +120,6 @@
 +(NSTimeInterval)animationDuration {
     //return the animation duration
     return 1.0;
-}
-
-+(NSTimeInterval)animationDelay {
-    //return the animation delay
-    return 0.0;
 }
 
 @end
