@@ -1,7 +1,7 @@
 JHPullToRefreshKit
 ==================
 
-*Abstract base class to easily create pull to refresh controls*
+*Abstract base class to easily create custom pull to refresh controls*
   
 <img src="./gifs/colors.gif" width="150px"></img>
 <img src="./gifs/bubbles.gif" width="150px"></img>
@@ -34,9 +34,8 @@ You can add the refresh control to a scroll view in one line after you initializ
 	[super viewDidLoad];
 	...
 	self.myRefreshControl = [[MyRefreshControl alloc] init];
-	__weak id weakSelf = self;
 	[self.myRefreshControl addToScrollView:self.tableView withRefreshBlock:^{
-	     [weakSelf tableViewWasPulledToRefresh];
+	     [self tableViewWasPulledToRefresh];
 	}];
 	...
 }
@@ -283,4 +282,6 @@ self.myRefreshControl.delegate = self;
 ##Contact Info && Contributing
 
 Feel free to email me at [jhurray33@gmail.com](mailto:jhurray33@gmail.com?subject=JHPullToRefreshKit). I'd love to hear your thoughts on this, or see examples where this has been used.
+
+[MIT License](./LICENSE)
 
