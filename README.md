@@ -151,7 +151,7 @@ The process below runs continuously from the time that the scroll view is pulled
 ###Variables
 
 ####<a name="type-options"></a> JHRefreshControlType
-This is how the refresh control is presented when the scroll view is scrolling down (While offset < height). Must be set in **initWithType:**
+This is how the refresh control is presented when the scroll view is scrolling down (While offset < height). Must be set in **initWithType:**. Defaults to *SlideDown* if a simple **init** is called.
 
 * *JHRefreshControlTypeSlideDown:* the refresh control will slide down with the scroll view as it scrolls.
 <div>
@@ -169,7 +169,7 @@ MyRefreshControl *refreshControl = [[MyRefreshControl alloc] initWithType:JHRefr
 
 ####<a name="anchor-options"></a> JHRefreshControlAnchorPosition
 
-This is how the animation view is anchored when the scroll view has been scrolled down past its height. (While offset > height).
+This is how the animation view is anchored when the scroll view has been scrolled down past its height. (While offset > height). Defaults to *Top*.
 
 * *JHRefreshControlAnchorPositionTop:* The animation view will stick to the top.
 <div>
