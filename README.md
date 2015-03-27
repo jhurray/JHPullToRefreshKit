@@ -11,17 +11,17 @@ JHPullToRefreshKit
 All of the above were made with less than 150 lines of code. 
 
 ####Why Another Pull To Refresh Library?
-There are lots of PTR libraries out there but none that fit 100% of my needs. PTR controls are awesome when completed but tedious to make. I made this so I would always be able to jump right into the animation, and not having to worry about customization. All you have to do for my implementation is override a few class functions detailing height, animation duration, and what gets run each animation cycle. 
+There are lots of PTR libraries out there but none that fit 100% of my needs. PTR controls are awesome when completed but tedious to make. I made this so I would always be able to jump right into the custom animation, and not having to worry about customization. All you have to do for my implementation is override a few [abstract methods](#subclassing) detailing height, animation duration, and what gets run each [animation cycle](#under-the-hood). 
 
 **My implementation provides:**
 
 * [Add to a UITableView or UIScrollView in one line of code](#adding)
-* [Customizable height, animation duration, and animation cycles](#subclassing)
+* [Customizable animations and height](#subclassing)
 * [Optional use of keyframe, spring,](#animation-options) or [CALayer](#calayer) animations
 * [Anchoring of the animated view once it is pulled down past its height](#anchor-options)
 * [How the PTR control is presented as it is pulled down](#type-options)
 * [Exit animations](#exit)
-* [Debug](#debug)
+* [Verbose debugging](#debug)
 
 ## <a name="adding"></a>Adding to a UIScrollView
 
