@@ -3,10 +3,10 @@ JHPullToRefreshKit
 
 Abstract base class to easily create pull to refresh controls 
 <div>
-<img src="./gifs/colors.gif" style="max-width: 120px"></img>
-<img src="./gifs/bubbles.gif" style="max-width: 120px"></img>
-<img src="./gifs/google.gif" style="max-width: 120px"></img>
-<img src="./gifs/yahoo.gif" style="max-width:120px"></img>
+<img src="./gifs/colors.gif" style="max-width: 150px"></img>
+<img src="./gifs/bubbles.gif" style="max-width: 150px"></img>
+<img src="./gifs/google.gif" style="max-width: 150px"></img>
+<img src="./gifs/yahoo.gif" style="max-width: 150px"></img>
 </div>
 
 ####Why Another Pull To Refresh Library?
@@ -125,17 +125,17 @@ This is how the animation view is anchored when the scroll view has been scrolle
 
 * *JHRefreshControlAnchorPositionTop:* The animation view will stick to the top.
 <div>
-<img src="./gifs/anchor-top.gif" style="max-width:35px; margin:auto"></img>
+<img src="./gifs/anchor-top.gif" style="max-width: 200px; margin:auto"></img>
 </div>
 
 * *JHRefreshControlAnchorPositionMiddle:* The animation view will stretch as the scroll view offset increases and stick in the middle. 
 <div>
-<img src="./gifs/anchor-middle.gif" style="max-width:35px; margin:auto"></img>
+<img src="./gifs/anchor-middle.gif" style="max-width: 200px; margin:auto"></img>
 </div>
 
 * *JHRefreshControlAnchorPositionBottom:* The animation view will stick to the bottom.
 <div>
-<img src="./gifs/anchor-bottom.gif" style="max-width:35px; margin:auto"></img>
+<img src="./gifs/anchor-bottom.gif" style="max-width: 200px; margin:auto"></img>
 </div>
 
 ```objective-c
