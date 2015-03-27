@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.summary  = 'Abstract base class to easily create custom pull to refresh controls'
   s.license  = 'MIT'
   s.source   = { :git => 'https://github.com/jhurray/JHPullToRefreshKit.git', :tag => s.version.to_s }
-  s.source_files = 'JHPullToRefreshKit/*.{h, m, txt}'
+  s.source_files = 'JHPullToRefreshKit/*.{h,m,txt}'
   s.platform = :ios
   s.ios.deployment_target = '7.0'
   s.requires_arc = true
