@@ -12,6 +12,10 @@
 // For abstract classes
 #define MustOverride() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
 
+// DEBUG
+#define JHPTR_DEBUG_FLAG NO
+#define JHPTR_DEBUG(s) if (JHPTR_DEBUG_FLAG) {NSLog(@"JHPTR_DEBUG: %@", s);}
+
 // Screen dimensions
 #define kScreenWidth [[UIScreen mainScreen] bounds].size.width
 #define kScreenHeight [[UIScreen mainScreen] bounds].size.height

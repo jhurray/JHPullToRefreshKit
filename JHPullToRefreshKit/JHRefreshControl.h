@@ -78,7 +78,6 @@ typedef void (^JHCompletionBlock)(void);
         Properties
  **************************************/
 
-
 // Determines refresh animation view position when the tableView is stretched
 // When Top / Bottom:
 //       Animated refresh view will stick to the Top / Bottom (constant height)

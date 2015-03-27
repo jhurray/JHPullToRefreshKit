@@ -62,6 +62,7 @@
                             forKeyPath:@"contentOffset"
                                options:NSKeyValueObservingOptionNew
                                context:nil];
+    JHPTR_DEBUG(@"Added refresh control to scroll view.")
     
 }
 
@@ -70,6 +71,8 @@
 }
 
 -(void)forceRefresh {
+    JHPTR_DEBUG(@"")
+    JHPTR_DEBUG(@"Forced refresh.")
     [self refresh];
 }
 
@@ -80,6 +83,7 @@
 
 -(void)addSubviewToRefreshAnimationView:(UIView *)subview {
     [self.refreshAnimationView addSubview:subview];
+    JHPTR_DEBUG(@"Added subview to refresh animation view.")
 }
 
 -(CGFloat)height {
@@ -148,6 +152,7 @@
     self.refreshAnimationView.backgroundColor = [UIColor clearColor];
     self.layer.masksToBounds = YES;
     [self addSubview:refreshAnimationView];
+    JHPTR_DEBUG(@"Refresh control is setup")
 }
 
 -(CGRect)calculatedFrame {
@@ -171,6 +176,7 @@
 }
 
 -(void)refresh {
+    JHPTR_DEBUG(@"Refresh started.")
     [self setRefreshing:YES];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     [delegate refreshControlDidStart:self];
@@ -184,8 +190,12 @@
 }
 
 -(void)resetAnimation {
+    JHPTR_DEBUG(@"Refresh ended.")
     [self setRefreshing:NO];
+    JHPTR_DEBUG(@"Starting exit animation.")
     [self exitAnimationForRefreshView:self.refreshAnimationView withCompletion:^{
+        JHPTR_DEBUG(@"Refresh animation ended")
+        JHPTR_DEBUG(@"Resigning refresh control")
         [self.delegate refreshControlDidEnd:self];
         if (self.parentScrollView) {
             [UIView animateWithDuration:kPTRAnimationDuration animations:^{
@@ -194,6 +204,7 @@
                 [self.parentScrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
             }];
         }
+        JHPTR_DEBUG(@"Resetting animation view")
         [self performSelector:@selector(resetAnimationView:)
                    withObject:self.refreshAnimationView
                    afterDelay:kPTRAnimationDuration];
@@ -201,7 +212,9 @@
 }
 
 -(void)animateRefreshView {
+    JHPTR_DEBUG(@"Setting up animation view for new cycle.")
     [self setupRefreshControlForAnimationView:self.refreshAnimationView];
+    JHPTR_DEBUG(@"Starting animation cycle.")
     switch (self.animationType) {
         case JHRefreshControlAnimationTypeKeyFrame:
             [self keyframeAnimation];
@@ -217,15 +230,19 @@
 }
 
 -(void)animateRefreshViewEnded {
+    JHPTR_DEBUG(@"Animation cycle ended.")
     [self.delegate refreshControlDidEndAnimationCycle:self];
     if (self.isRefreshing) {
+        JHPTR_DEBUG(@"endRefreshing has not been called yet")
         [self animateRefreshView];
     } else {
+        JHPTR_DEBUG(@"endRefreshing has been called")
         [self resetAnimation];
     }
 }
 
 -(void)defaultAnimation {
+    JHPTR_DEBUG(@"Default animation")
     [UIView animateWithDuration:self.animationDuration
                           delay:self.animationDelay
                             options:self->animationOptions
@@ -236,6 +253,7 @@
     }];
 }
 -(void)keyframeAnimation {
+    JHPTR_DEBUG(@"Keyframe animation")
     [UIView animateKeyframesWithDuration:self.animationDuration
                                    delay:self.animationDelay
                                     options:self->animationOptions
@@ -246,6 +264,7 @@
     }];
 }
 -(void)springAnimation {
+    JHPTR_DEBUG(@"Spring animation")
     [UIView animateWithDuration:self.animationDuration
                           delay:self.animationDelay
                             usingSpringWithDamping:0.8
@@ -262,14 +281,12 @@
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"contentOffset"] && object == self.parentScrollView) {
-        NSLog(@"Shit is scrolling!");
         [self containingScrollViewDidScroll:self.parentScrollView];
     }
 }
 
 -(void) handlePanGestureRecognizer {
     if (self.parentScrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"Drag DID END MOTHA FUCKAAAAA");
         [self containingScrollViewDidEndDragging:self.parentScrollView];
     }
 }

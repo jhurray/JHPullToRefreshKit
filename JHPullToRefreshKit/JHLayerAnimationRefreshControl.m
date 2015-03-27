@@ -41,12 +41,14 @@
     }];
     
     // if there are view animations as well
+    JHPTR_DEBUG(@"Setting up animation view for new cycle.")
     [self setupRefreshControlForAnimationView:self.refreshAnimationView];
     [UIView animateWithDuration:self.animationDuration animations:^{
        [self animationCycleForAnimationView:self.refreshAnimationView];
     }];
     
     // layer animations
+    JHPTR_DEBUG(@"Starting animation cycle.")
     CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
     [animationGroup setAnimations:[self.animations allValues]];
     [animationGroup setDuration:self.animationDuration];

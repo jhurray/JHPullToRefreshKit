@@ -21,6 +21,7 @@ There are lots of PTR libraries out there but none that fit 100% of my needs. PT
 * [Anchoring of the animated view once it is pulled down past its height](#anchor-options)
 * [How the PTR control is presented as it is pulled down](#type-options)
 * [Exit animations](#exit)
+* [Debug](#debug)
 
 ## <a name="adding"></a>Adding to a UIScrollView
 
@@ -145,6 +146,10 @@ The process below runs continuously from the time that the scroll view is pulled
             -> [completion animation] 
             -> reset animation view
 ``` 
+
+###<a name="debug"></a>Debugging
+
+If you want to debug the above process set the **JHPTR\_DEBUG\_FLAG** to *YES* in [JHPullToRefreshKit.h](./JHPullToRefreshKit/JHPullToRefreshKit.h). This will provide verbose output that you can use to see what functions are being called while using a subclass of *JHRefreshControl* or *JHLayerAnimationRefreshControl*.
 
 ##Customization
 

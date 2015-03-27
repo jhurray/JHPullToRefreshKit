@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "449122818.336396"
+            timestampString = "449171836.870463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "-containingScrollViewDidEndDragging:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "449122818.336396"
+            timestampString = "449171836.870463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "-refresh"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JHPullToRefreshExampleProj/GoogleRefreshControl.m"
-            timestampString = "440700810.071265"
+            timestampString = "449171836.870463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-setup"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JHPullToRefreshExampleProj/GoogleRefreshControl.m"
-            timestampString = "440700810.071265"
+            timestampString = "449171836.870463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "-setup"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "449122818.336396"
+            timestampString = "449171836.870463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
             landmarkName = "-containingScrollViewDidScroll:"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JHPullToRefreshKit/JHRefreshControl.m"
-            timestampString = "449122818.336396"
+            timestampString = "449171836.870463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
             landmarkName = "-containingScrollViewDidScroll:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JHPullToRefreshExampleProj/GoogleRefreshControl.m"
-            timestampString = "449097328.818575"
+            timestampString = "449171836.870463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-handleScrollingOnAnimationView:withPullDistance:pullRatio:pullVelocity:"
             landmarkType = "5">
          </BreakpointContent>
