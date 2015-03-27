@@ -20,8 +20,6 @@
 		26296AE41A400F25003D76A7 /* BubblesPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AE31A400F25003D76A7 /* BubblesPTRTableViewController.m */; };
 		26296AE71A400F6D003D76A7 /* BubbleRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AE61A400F6D003D76A7 /* BubbleRefreshControl.m */; };
 		267690FC1AC5DEA800FCADF5 /* AbstractFunctionsCopyandPaste.txt in Resources */ = {isa = PBXBuildFile; fileRef = 267690FB1AC5DEA800FCADF5 /* AbstractFunctionsCopyandPaste.txt */; };
-		267690FE1AC5E22800FCADF5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 267690FD1AC5E22800FCADF5 /* LICENSE */; };
-		267691001AC5E50600FCADF5 /* JHPullToRefreshKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 267690FF1AC5E50600FCADF5 /* JHPullToRefreshKit.podspec */; };
 		269E86A31A9FC65000ED8BCE /* YahooRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E86A21A9FC65000ED8BCE /* YahooRefreshControl.m */; };
 		269E86A61A9FC67400ED8BCE /* YahooViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E86A51A9FC67400ED8BCE /* YahooViewController.m */; };
 		26EDE7C51A42148200E6FB02 /* LabelRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDE7C41A42148200E6FB02 /* LabelRefreshControl.m */; };
@@ -67,8 +65,6 @@
 		26296AE51A400F6D003D76A7 /* BubbleRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleRefreshControl.h; sourceTree = "<group>"; };
 		26296AE61A400F6D003D76A7 /* BubbleRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleRefreshControl.m; sourceTree = "<group>"; };
 		267690FB1AC5DEA800FCADF5 /* AbstractFunctionsCopyandPaste.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AbstractFunctionsCopyandPaste.txt; sourceTree = "<group>"; };
-		267690FD1AC5E22800FCADF5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
-		267690FF1AC5E50600FCADF5 /* JHPullToRefreshKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JHPullToRefreshKit.podspec; sourceTree = "<group>"; };
 		269E86A11A9FC65000ED8BCE /* YahooRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooRefreshControl.h; sourceTree = "<group>"; };
 		269E86A21A9FC65000ED8BCE /* YahooRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooRefreshControl.m; sourceTree = "<group>"; };
 		269E86A41A9FC67400ED8BCE /* YahooViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooViewController.h; sourceTree = "<group>"; };
@@ -124,8 +120,6 @@
 		26296AA81A3E682E003D76A7 /* JHPullToRefreshExampleProj */ = {
 			isa = PBXGroup;
 			children = (
-				267690FF1AC5E50600FCADF5 /* JHPullToRefreshKit.podspec */,
-				267690FD1AC5E22800FCADF5 /* LICENSE */,
 				26296ACF1A3E6926003D76A7 /* JHPullToRefreshKit */,
 				26296AAD1A3E682E003D76A7 /* AppDelegate.h */,
 				26296AAE1A3E682E003D76A7 /* AppDelegate.m */,
@@ -322,8 +316,6 @@
 				267690FC1AC5DEA800FCADF5 /* AbstractFunctionsCopyandPaste.txt in Resources */,
 				26296ABA1A3E682E003D76A7 /* LaunchScreen.xib in Resources */,
 				26296AB71A3E682E003D76A7 /* Images.xcassets in Resources */,
-				267690FE1AC5E22800FCADF5 /* LICENSE in Resources */,
-				267691001AC5E50600FCADF5 /* JHPullToRefreshKit.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
