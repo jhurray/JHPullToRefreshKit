@@ -21,7 +21,7 @@ There are lots of PTR libraries out there but none that fit 100% of my needs. PT
 * [Anchoring of the animated view once it is pulled down past its height](#anchor-options)
 * [How the PTR control is presented as it is pulled down](#type-options)
 * [Exit animations](#exit)
-* [Debug](#debug)
+* [Verbose debugging](#debug)
 
 ## <a name="adding"></a>Adding to a UIScrollView
 
