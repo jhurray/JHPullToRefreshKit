@@ -1,13 +1,11 @@
 JHPullToRefreshKit
 ==================
 
-Abstract base class to easily create pull to refresh controls 
-<div>
-<img src="./gifs/colors.gif" style="max-width: 150px"></img>
-<img src="./gifs/bubbles.gif" style="max-width: 150px"></img>
-<img src="./gifs/google.gif" style="max-width: 150px"></img>
+Abstract base class to easily create pull to refresh controls  
+![](./gifs/colors.gif)
+<img src="./gifs/bubbles.gif" width="150px"></img>
+<div style="width:150px"><img src="./gifs/google.gif"></img></div>
 <img src="./gifs/yahoo.gif" style="max-width: 150px"></img>
-</div>
 
 ####Why Another Pull To Refresh Library?
 There are lots of PTR libraries out there but none that fit 100% of my needs. PTR controls are awesome when completed but tedious to make. I made this so I would always be able to jump right into the animation, and not having to worry about customization. All you have to do for my implementation is override a few class functions detailing height, animation duration, and what gets run each animation cycle. 
