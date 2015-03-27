@@ -8,7 +8,7 @@ JHPullToRefreshKit
 <img src="./gifs/google.gif" width="150px"></img>
 <img src="./gifs/yahoo.gif" width="150px"></img>
 
-All of the above were made with less than 150 lines of code. 
+All of the above were made with **less than 150 lines of code**. 
 
 ####Why Another Pull To Refresh Library?
 There are lots of PTR libraries out there but none that fit 100% of my needs. PTR controls are awesome when completed but tedious to make. I made this so I would always be able to jump right into the custom animation, and not having to worry about customization. All you have to do for my implementation is override a few [abstract methods](#subclassing) detailing height, animation duration, and what gets run each [animation cycle](#under-the-hood). 
@@ -256,6 +256,27 @@ A good example is in the Yahoo News Digest Example I provided. To spin the dots,
 This ensures that the layer I return in **targetLayer** will be rotated 360 degrees each animation cycle. 
 
 Note that **setupRefreshControlForAnimationView:** and **animationCycleForAnimationView:** do not need to be overriden when subclassing JHLayerAnimationRefreshControl. You can, however, override thos functions if there are other UIView animations you would like to execute. 
+
+##Delegate
+
+There are some delegate methods your view controller or scroll view can conform to. 
+
+```objective-c
+self.myRefreshControl.delegate = self;
+```
+
+```objective-c
+@protocol JHRefreshControlDelegate <NSObject>
+
+-(void)refreshControlDidStart:(JHRefreshControl *)refreshControl;
+-(void)refreshControlDidEnd:(JHRefreshControl *)refreshControl;
+
+@optional
+-(void)refreshControlDidStartAnimationCycle:(JHRefreshControl *)refreshControl;
+-(void)refreshControlDidEndAnimationCycle:(JHRefreshControl *)refreshControl;
+
+@end
+```
 
 ##Contact Info && Contributing
 
