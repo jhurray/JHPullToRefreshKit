@@ -10,7 +10,7 @@ Abstract base class to easily create pull to refresh controls
 </div>
 
 ####Why Another Pull To Refresh Library?
-There are lots of PTR libraries out there but none that fit 100px of my needs. PTR controls are awesome when completed but tedious to make. I made this so I would always be able to jump right into the animation, and not having to worry about customization. All you have to do for my implementation is override a few class functions detailing height, animation duration, and what gets run each animation cycle. 
+There are lots of PTR libraries out there but none that fit 100% of my needs. PTR controls are awesome when completed but tedious to make. I made this so I would always be able to jump right into the animation, and not having to worry about customization. All you have to do for my implementation is override a few class functions detailing height, animation duration, and what gets run each animation cycle. 
 
 **My implementation provides:**
 
