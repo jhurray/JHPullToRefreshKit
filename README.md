@@ -52,29 +52,42 @@ You can add the refresh control to a scroll view in one line after you initializ
 **JHRefreshControl** is an abstract base class, which means there are some functions you need to override. The following methods must be implemented or your app will crash. You can find a section of code to copy and paste in *JHRefreshControl.h* with all the methods for your .m file. 
 
 ####Abstract Class Methods:
+```objective-c
+// sets the height of the refresh control  
++(CGFloat)height;
 
-**+(CGFloat)height;** sets the height of the refresh control  
- 
-**+(NSTimeInterval)animationDuration;**  sets the animation duration of each animation cycle for the refresh control. 
-
-**+(NSTimeInterval)animationDelay;** sets the animation delay for an animation cycle. Defaults to 0.0. Note this **does not** need to be implemented.
-
+//sets the animation duration of each animation cycle for the refresh control.
++(NSTimeInterval)animationDuration;
+```
 ####Abstract Instance Methods:
 
-**-(void)setup;** Use this to setup the refresh control. Put setup code here instead of init.  
+```objective-c
+// use this to setup the refresh control.
+// put setup code here instead of init
+-(void)setup;
 
-**-(void)handleScrollingOnAnimationView:(UIView *)animationView
+// Used to control UI elements during scrolling
+// only called while scroll view is scrolling
+// not during PTR animation
+-(void)handleScrollingOnAnimationView:(UIView *)animationView
                      withPullDistance:(CGFloat)pullDistance
                         pullRatio:(CGFloat)pullRatio
-                         pullVelocity:(CGFloat)pullVelocity;** used to control UI elements during scrolling.
-                         
+                         pullVelocity:(CGFloat)pullVelocity;
+```
 * *pullDistance:* offset of the scroll view
 * *pullRatio:* ratio of the offset to the height of the refresh control
 * *pullVelocity:* how fast the scroll view is being pulled  
 
-**-(void)setupRefreshControlForAnimationView:(UIView *)animationView;** Set refresh animation to correct state before a new cycle begins.
 
-**-(void)animationCycleForAnimationView:(UIView *)animationView;** UI changes to be animated continuously until **endRefreshing** is called.   
+```objective-c
+// Set refresh animation to correct state before a new cycle begins
+// Called before each animation
+-(void)setupRefreshControlForAnimationView:(UIView *)animationView;
+
+// UI changes to be animated continuously 
+// until endRefreshing is called. 
+-(void)animationCycleForAnimationView:(UIView *)animationView;
+```  
 
 ####Other Useful Properties and Methods:
 
@@ -96,6 +109,10 @@ You can add the refresh control to a scroll view in one line after you initializ
 // important to only add subviews in this manner
 // call in subclass to setup refresh control
 -(void)addSubviewToRefreshAnimationView:(UIView *)subview;
+
+// sets the animation delay
+// override in subclass
++(NSTimeInterval)animationDelay;
 
 //getters
 @property (atomic, readonly, getter=isRefreshing) BOOL refreshing;
@@ -124,7 +141,9 @@ The process below runs continuously from the time that the scroll view is pulled
         -> if refreshing:
             recurse (another cycle)
         -> else:
-            refreshing ended -> [completion animation]
+            refreshing ended 
+            -> [completion animation] 
+            -> reset animation view
 ``` 
 
 ##Customization
@@ -175,12 +194,12 @@ self.anchorPosition = JHRefreshControlAnchorPositionTop;
 
 This determines the type of animation block that an animation cycle is run in.
 
-* *JHRefreshControlAnimationTypeDefault:* Animation cycle runs inside normal **[UIView animationWithDuration:...]** block.
-* *JHRefreshControlAnimationTypeKeyFrame:* Animation cycle runs inside **[UIView animateKeyframesWithDuration:...]** block.
-* *JHRefreshControlAnimationTypeSpring:* Animation cycle runs inside **[[UIView animateWithDuration:
+* *JHRefreshControlAnimationTypeDefault:* Animation cycle runs inside normal <a>[UIView animationWithDuration:...]</a> block.
+* *JHRefreshControlAnimationTypeKeyFrame:* Animation cycle runs inside <a>[UIView animateKeyframesWithDuration:...]</a> block. This means that you should call <a>[UIView addKeyframeAnimationWithRelativeStartTime:...]</a> inside your <a>animationCycleForRefreshView:</a> function.
+* *JHRefreshControlAnimationTypeSpring:* Animation cycle runs inside <a>[[UIView animateWithDuration:
                           delay:
                             usingSpringWithDamping: 
-                            initialSpringVelocity:...]** block.
+                            initialSpringVelocity:...]</a> block.
 
 ```objective-c
 self.animationType = JHRefreshControlAnimationTypeDefault;
@@ -235,5 +254,5 @@ Note that **setupRefreshControlForAnimationView:** and **animationCycleForAnimat
 
 ##Contact Info && Contributing
 
-Feel free to email me at [jhurray33@gamil.com](mailto:jhurray33@gmail.com?subject=JHPullToRefreshKit). I'd love to hear your thoughts on this, or see examples where this has been used.
+Feel free to email me at [jhurray33@gmail.com](mailto:jhurray33@gmail.com?subject=JHPullToRefreshKit). I'd love to hear your thoughts on this, or see examples where this has been used.
 
