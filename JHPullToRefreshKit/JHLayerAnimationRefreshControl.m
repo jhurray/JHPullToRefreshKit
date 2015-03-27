@@ -31,6 +31,8 @@
     animation.toValue = [NSNumber numberWithFloat:toValue];
     animation.fromValue = [NSNumber numberWithFloat:fromValue];
     [self.animations setObject:animation forKey:keyPath];
+    NSString *message = [NSString stringWithFormat:@"Added CABasicAnimation with Keypath %@", keyPath];
+    JHPTR_DEBUG(message)
 }
 
 -(void)animateRefreshView {
