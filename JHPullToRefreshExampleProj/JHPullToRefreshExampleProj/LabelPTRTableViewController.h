@@ -6,8 +6,11 @@
 //  Copyright (c) 2014 jhurray. All rights reserved.
 //
 
+#import "LabelRefreshControl.h"
 #import "JHCustomPTRTableViewController.h"
 
-@interface LabelPTRTableViewController : JHCustomPTRTableViewController
+@interface LabelPTRTableViewController : UITableViewController
+
+@property (strong, nonatomic) LabelRefreshControl *labelControl;
 
 @end

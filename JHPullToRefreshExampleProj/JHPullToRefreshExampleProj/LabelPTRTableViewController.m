@@ -12,6 +12,13 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.labelControl = [[LabelRefreshControl alloc] initWithType:JHRefreshControlTypeSlideDown];
+    self.labelControl.anchorPosition = JHRefreshControlAnchorPositionMiddle;
+    __weak id weakSelf = self;
+    [self.labelControl addToScrollView:self.tableView withRefreshBlock:^{
+        [weakSelf tableViewWasPulledToRefresh];
+    }];
 }
 
 -(void)tableViewWasPulledToRefresh {

@@ -36,26 +36,42 @@
 -(void)animateRefreshView {
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{
+        [[self targetLayer] removeAnimationForKey:@"groupedRefreshControlAnimation"];
         [self animateRefreshViewEnded];
-        [[[self class] targetLayer] removeAnimationForKey:@"groupedRefreshControlAnimation"];
     }];
     
-    [self animationCycleForAnimationView:self.refreshAnimationView];
+    // if there are view animations as well
+    [self setupRefreshControlForAnimationView:self.refreshAnimationView];
+    [UIView animateWithDuration:self.animationDuration animations:^{
+       [self animationCycleForAnimationView:self.refreshAnimationView];
+    }];
     
+    // layer animations
     CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
     [animationGroup setAnimations:[self.animations allValues]];
     [animationGroup setDuration:self.animationDuration];
     [animationGroup setRemovedOnCompletion:NO];
     [animationGroup setFillMode:kCAFillModeForwards];
-    [[[self class] targetLayer] addAnimation:animationGroup forKey:@"groupedRefreshControlAnimation"];
-    
+    [[self targetLayer] addAnimation:animationGroup forKey:@"groupedRefreshControlAnimation"];
     [CATransaction commit];
+    [self.delegate refreshControlDidStartAnimationCycle:self];
 }
 
 // ABSTRACT CLASS METHOD
 
-+(CALayer *) targetLayer {
+-(CALayer *) targetLayer {
     MustOverride();
+}
+
+#pragma So they do not need to be overriden
+
+-(void)setupRefreshControlForAnimationView:(UIView *)animationView {
+    // Set refresh animation to correct state before a new cycle begins
+}
+
+-(void)animationCycleForAnimationView:(UIView *)animationView {
+    // UI changes to be animated each cycle
+    
 }
 
 @end

@@ -12,6 +12,8 @@
 
 @interface JHRefreshControl()
 
+@property (nonatomic, copy) void (^refreshBlock)();
+
 // original frame for the control
 // depends on type
 -(CGRect)calculatedFrame;
@@ -42,8 +44,25 @@
     if(self = [super init]) {
         _type = JHRefreshControlTypeSlideDown;
         [self setupRefreshControl];
+        [self setup];
     }
     return self;
+}
+
+-(void) addToScrollView:(UIScrollView *)scrollView withRefreshBlock:(void (^)())refreshBlock {
+    self.parentScrollView = scrollView;
+    self.refreshBlock = refreshBlock;
+    [self.parentScrollView addSubview:self];
+    if (self->_type == JHRefreshControlTypeBackground) {
+        [self.parentScrollView sendSubviewToBack:self];
+    }
+    [self.parentScrollView.panGestureRecognizer addTarget:self
+                                                   action:@selector(handlePanGestureRecognizer)];
+    [self.parentScrollView addObserver:self
+                            forKeyPath:@"contentOffset"
+                               options:NSKeyValueObservingOptionNew
+                               context:nil];
+    
 }
 
 -(void)endRefreshing {
@@ -113,7 +132,7 @@
 }
 
 +(NSTimeInterval)animationDelay {
-    MustOverride();
+    return 0.0;
 }
 
 // PRIVATE 
@@ -124,9 +143,10 @@
     self.animationType = JHRefreshControlAnimationTypeDefault;
     self->animationOptions = 0;
     // setup refresh animation view
-    self.animationViewStretches = NO;
+    self.anchorPosition = JHRefreshControlAnchorPositionTop;
     self.refreshAnimationView = [[UIView alloc] initWithFrame:self.bounds];
     self.refreshAnimationView.backgroundColor = [UIColor clearColor];
+    self.layer.masksToBounds = YES;
     [self addSubview:refreshAnimationView];
 }
 
@@ -144,10 +164,22 @@
     }
 }
 
+-(void)setScrollViewTopInsets:(CGFloat)offset {
+    UIEdgeInsets insets = self.parentScrollView.contentInset;
+    insets.top += offset;
+    self.parentScrollView.contentInset = insets;
+}
+
 -(void)refresh {
     [self setRefreshing:YES];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     [delegate refreshControlDidStart:self];
+    if (self.parentScrollView) {
+        self.refreshBlock();
+        [UIView animateWithDuration:kPTRAnimationDuration animations:^{
+            [self setScrollViewTopInsets: self.height];
+        } completion:nil];
+    }
     [self animateRefreshView];
 }
 
@@ -155,6 +187,13 @@
     [self setRefreshing:NO];
     [self exitAnimationForRefreshView:self.refreshAnimationView withCompletion:^{
         [self.delegate refreshControlDidEnd:self];
+        if (self.parentScrollView) {
+            [UIView animateWithDuration:kPTRAnimationDuration animations:^{
+                [self setScrollViewTopInsets: -self.height];
+            } completion:^(BOOL finished) {
+                [self.parentScrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+            }];
+        }
         [self performSelector:@selector(resetAnimationView:)
                    withObject:self.refreshAnimationView
                    afterDelay:kPTRAnimationDuration];
@@ -174,9 +213,11 @@
             [self defaultAnimation];
             break;
     }
+    [self.delegate refreshControlDidStartAnimationCycle:self];
 }
 
 -(void)animateRefreshViewEnded {
+    [self.delegate refreshControlDidEndAnimationCycle:self];
     if (self.isRefreshing) {
         [self animateRefreshView];
     } else {
@@ -217,13 +258,27 @@
     }];
 }
 
-// from scroll view delegate
+// ScrollView Observations
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"contentOffset"] && object == self.parentScrollView) {
+        NSLog(@"Shit is scrolling!");
+        [self containingScrollViewDidScroll:self.parentScrollView];
+    }
+}
+
+-(void) handlePanGestureRecognizer {
+    if (self.parentScrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        NSLog(@"Drag DID END MOTHA FUCKAAAAA");
+        [self containingScrollViewDidEndDragging:self.parentScrollView];
+    }
+}
 
 -(void)containingScrollViewDidEndDragging:(UIScrollView *)scrollView {
     CGFloat actualOffset = scrollView.contentOffset.y;
     if(!self.isRefreshing && -actualOffset > self.height) {
         [self refresh];
-        if (self.animationViewStretches) {
+        if (self.anchorPosition != JHRefreshControlAnchorPositionTop) {
             [UIView animateWithDuration:kPTRAnimationDuration animations:^{
                 self.refreshAnimationView.frame = CGRectMake(0, 0, kScreenWidth, self.height);
                 [self handleScrollingOnAnimationView:self.refreshAnimationView
@@ -270,10 +325,13 @@
         self.bounds = CGRectMake(0, 0, kScreenWidth, self.height);
     }
     // set refresh animation view frame
-    if (self.animationViewStretches) {
+    if (self.anchorPosition == JHRefreshControlAnchorPositionMiddle) {
         // give the appearance of stretching
         CGPoint center = CGPointMake(kScreenWidth/2, self.bounds.size.height/2);
         self.refreshAnimationView.center = center;
+    } else if (self.anchorPosition == JHRefreshControlAnchorPositionBottom) {
+        CGRect bottomFrame = CGRectMake(0, self.frame.size.height-self.height, kScreenWidth, self.height);
+        self.refreshAnimationView.frame = bottomFrame;
     }
 }
 

@@ -28,7 +28,7 @@
     
     self.backgroundColor = [UIColor blueColor];
     self.animationType = JHRefreshControlAnimationTypeKeyFrame;
-    self.animationViewStretches = YES;
+    self.anchorPosition = JHRefreshControlAnchorPositionMiddle;
     self->animationOptions = UIViewKeyframeAnimationOptionCalculationModeLinear;
 }
 
@@ -61,6 +61,7 @@
                             pullRatio:(CGFloat)pullRatio
                          pullVelocity:(CGFloat)pullVelocity {
     // used to control UI elements during scrolling
+    NSLog(@"%f", pullRatio);
     self.bubble1.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
     self.bubble2.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);
     self.bubble3.transform = CGAffineTransformMakeScale(pullRatio, pullRatio);

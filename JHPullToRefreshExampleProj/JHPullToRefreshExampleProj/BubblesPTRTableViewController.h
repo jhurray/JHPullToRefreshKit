@@ -6,8 +6,11 @@
 //  Copyright (c) 2014 jhurray. All rights reserved.
 //
 
+#import "BubbleRefreshControl.h"
 #import "JHCustomPTRTableViewController.h"
 
-@interface BubblesPTRTableViewController : JHCustomPTRTableViewController
+@interface BubblesPTRTableViewController : UITableViewController
+
+@property (strong, nonatomic) BubbleRefreshControl *bubbleControl;
 
 @end

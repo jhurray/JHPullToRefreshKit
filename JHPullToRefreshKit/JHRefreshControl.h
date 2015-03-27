@@ -24,6 +24,12 @@ typedef NS_ENUM(NSInteger, JHRefreshControlAnimationType) {
     JHRefreshControlAnimationTypeSpring
 };
 
+typedef NS_ENUM(NSInteger, JHRefreshControlAnchorPosition) {
+    JHRefreshControlAnchorPositionTop,
+    JHRefreshControlAnchorPositionMiddle,
+    JHRefreshControlAnchorPositionBottom
+};
+
 
 /**************************************
         Delegate
@@ -34,6 +40,10 @@ typedef NS_ENUM(NSInteger, JHRefreshControlAnimationType) {
 
 -(void)refreshControlDidStart:(JHRefreshControl *)refreshControl;
 -(void)refreshControlDidEnd:(JHRefreshControl *)refreshControl;
+
+@optional
+-(void)refreshControlDidStartAnimationCycle:(JHRefreshControl *)refreshControl;
+-(void)refreshControlDidEndAnimationCycle:(JHRefreshControl *)refreshControl;
 
 @end
 
@@ -68,12 +78,14 @@ typedef void (^JHCompletionBlock)(void);
         Properties
  **************************************/
 
-// When True:
+
+// Determines refresh animation view position when the tableView is stretched
+// When Top / Bottom:
+//       Animated refresh view will stick to the Top / Bottom (constant height)
+// When Middle:
 //       Animated refresh view will stretch with table view (variable height)
-// When False:
-//       Animated refresh view will stay at the top (constant height)
-// Defaults to False
-@property (nonatomic, assign) BOOL animationViewStretches;
+// Defaults to Top
+@property (nonatomic, assign) JHRefreshControlAnchorPosition anchorPosition;
 
 // Type of animation wrapped around the animation cycle
 // When Default:
@@ -83,6 +95,9 @@ typedef void (^JHCompletionBlock)(void);
 // When Spring:
 //      aniamtions will all have springy properties
 @property (nonatomic, assign) JHRefreshControlAnimationType animationType;
+
+
+
 
 
 // Read only properties
@@ -103,6 +118,9 @@ typedef void (^JHCompletionBlock)(void);
 /**************************************
         Instance Methods
  **************************************/
+
+// attach to a UIScrollView
+-(void)addToScrollView:(UIScrollView *)scrollView withRefreshBlock:(void(^)())refreshBlock;
 
 // manual refresh
 -(void)forceRefresh;
@@ -150,7 +168,6 @@ typedef void (^JHCompletionBlock)(void);
 // animation for when refreshing is done.
 // does not need to be overridden
 // if empty no animation will be executed
-// runs a KeyFrame animation with 'animationOptions'
 -(void)exitAnimationForRefreshView:(UIView *)animationView withCompletion:(JHCompletionBlock)completion;
 
 /**************************************
@@ -160,6 +177,9 @@ typedef void (^JHCompletionBlock)(void);
 
 +(CGFloat)height;
 +(NSTimeInterval)animationDuration;
+
+// Does NOT need to be overriden but feel free.
+// Defaults to 0.0
 +(NSTimeInterval)animationDelay;
 
 @end
@@ -225,6 +245,9 @@ typedef void (^JHCompletionBlock)(void);
 // only do this if you understand the implementation well.
 
 @interface JHRefreshControl()
+
+// scrollView that the refreshControl is added to
+@property (strong, nonatomic) UIScrollView *parentScrollView;
 
 // where animations should be done
 @property (strong, nonatomic) UIView *refreshAnimationView;

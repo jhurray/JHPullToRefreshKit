@@ -24,7 +24,7 @@
     self.label.center = CGPointMake(kScreenWidth/2, self.height/2);
     [self.label setTextAlignment:NSTextAlignmentCenter];
     self.label.text = @"pull down";
-    self.animationViewStretches = YES;
+    self.anchorPosition = JHRefreshControlAnchorPositionMiddle;
     [self addSubviewToRefreshAnimationView:self.label];
     self->animationOptions = UIViewAnimationOptionAutoreverse;
     self.animationType = JHRefreshControlAnimationTypeSpring;

@@ -22,7 +22,7 @@
  **************************************/
 
 // return target layer for CAAnimation to be added to
-+(CALayer *)targetLayer;
+-(CALayer *)targetLayer;
 
 @end
 

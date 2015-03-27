@@ -12,11 +12,17 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.googleControl = [[GoogleRefreshControl alloc] initWithType:JHRefreshControlTypeBackground];
+    __weak id weakSelf = self;
+    [self.googleControl addToScrollView:self.tableView withRefreshBlock:^{
+        [weakSelf tableViewWasPulledToRefresh];
+    }];
 }
 
 -(void)tableViewWasPulledToRefresh {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(7.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.refreshControl endRefreshing];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.googleControl endRefreshing];
     });
 }
 

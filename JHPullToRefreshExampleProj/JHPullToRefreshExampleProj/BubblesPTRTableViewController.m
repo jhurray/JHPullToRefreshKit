@@ -12,16 +12,45 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    if ([self.title containsString:@"SlideDown"]) {
+        self.bubbleControl = [[BubbleRefreshControl alloc] initWithType:JHRefreshControlTypeSlideDown];
+    } else {
+        self.bubbleControl = [[BubbleRefreshControl alloc] initWithType:JHRefreshControlTypeBackground];
+    }
+    
+    if ([self.title containsString:@"Top"]) {
+        self.bubbleControl.anchorPosition = JHRefreshControlAnchorPositionTop;
+    } else if ([self.title containsString:@"Bottom"]) {
+        self.bubbleControl.anchorPosition = JHRefreshControlAnchorPositionBottom;
+    } else {
+        self.bubbleControl.anchorPosition = JHRefreshControlAnchorPositionMiddle;
+    }
+    
+    __weak id weakSelf = self;
+    [self.bubbleControl addToScrollView:self.tableView withRefreshBlock:^{
+        [weakSelf tableViewWasPulledToRefresh];
+    }];
+
 }
 
 -(void)tableViewWasPulledToRefresh {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.refreshControl endRefreshing];
+        [self.bubbleControl endRefreshing];
     });
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"header title";
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 4;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return 10;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -33,7 +62,7 @@
     if(!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bubbles"];
     }
-    cell.textLabel.text = @"bubbles!!!";
+    cell.textLabel.text = self.title;
     return cell;
 }
 
