@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 jhurray. All rights reserved.
 //
 
-#import "JHCustomPTRTableViewController.h"
 
 @interface YahooViewController : UITableViewController
 

@@ -7,7 +7,6 @@
 //
 
 #import "BubbleRefreshControl.h"
-#import "JHCustomPTRTableViewController.h"
 
 @interface BubblesPTRTableViewController : UITableViewController
 

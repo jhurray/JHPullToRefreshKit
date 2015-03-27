@@ -49,21 +49,17 @@
     radius = 15.0;
     filling = NO;
     CGPoint animationViewCenter = CGPointMake(kScreenWidth/2, self.height/2);
-    
     colorIndex = 0;
     self.colors = @[[UIColor blueColor],
                     [UIColor redColor],
                     [UIColor orangeColor],
                     [UIColor greenColor]];
-    
     self.circleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, radius*2, radius*2)];
     self.circleView.center = animationViewCenter;
     self.circleView.backgroundColor = [UIColor clearColor];
     [self addSubviewToRefreshAnimationView:self.circleView];
-    
     CGPoint circleViewCenter = CGPointMake(radius, radius);
     self.arc = [UIBezierPath bezierPathWithArcCenter:circleViewCenter radius:radius startAngle:-M_PI endAngle:M_PI clockwise:YES];
-    
     self.arcLayer = [[CAShapeLayer alloc] init];
     self.arcLayer.path = self.arc.CGPath;
     self.arcLayer.strokeColor = [self colorFromCurrentColorIndex];
@@ -72,7 +68,6 @@
     self.arcLayer.strokeStart = 0.0;
     self.arcLayer.strokeEnd = startPercent;
     self.arcLayer.frame = self.circleView.bounds;
-    
     [self.circleView.layer insertSublayer:self.arcLayer atIndex:0];
 }
 
@@ -80,7 +75,6 @@
                      withPullDistance:(CGFloat)pullDistance
                             pullRatio:(CGFloat)pullRatio
                          pullVelocity:(CGFloat)pullVelocity {
-    // used to control UI elements during scrolling
     CGFloat startPullRatio = 0.5;
     CGFloat startPullRatioMultiplier = (pullRatio-startPullRatio)*(1/startPullRatio);
     if (pullRatio > startPullRatio) {
@@ -91,8 +85,6 @@
 }
 
 -(void)resetAnimationView:(UIView *)animationView {
-    // should reset UI elements here
-    // called after refresh control finishes and is hidden
     rotation = 0;
     [self.circleView setAlpha:1.0];
     self.circleView.transform = CGAffineTransformMakeRotation(rotation);
@@ -102,7 +94,6 @@
 }
 
 -(void)setupRefreshControlForAnimationView:(UIView *)animationView {
-    // Set refresh animation to correct state before a new cycle begins
     self.arcLayer.strokeEnd = self->filling ? endPercent : startPercent;
     if (filling) {
         colorIndex++;
@@ -144,38 +135,28 @@
 }
 
 -(void)exitAnimationForRefreshView:(UIView *)animationView withCompletion:(JHCompletionBlock)completion {
-    // animation for when refreshing is done.
-    // does not need to be overridden
-    // if empty no animation will be executed
     [CATransaction begin];
-    
     [CATransaction setCompletionBlock:^{
         [self.circleView setAlpha:0];
         [self.arcLayer removeAnimationForKey:@"google"];
         completion();
     }];
-    
     CGFloat strokeStartVal = _arcLayer.strokeEnd;
     CGFloat strokeEndVal = 0;
-    
     CABasicAnimation *animateStrokeFill = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     animateStrokeFill.fromValue = [NSNumber numberWithFloat:strokeStartVal];
     animateStrokeFill.toValue = [NSNumber numberWithFloat:strokeEndVal];
-    
     CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.fromValue = [NSNumber numberWithFloat:rotation];
     rotationAnimation.toValue = [NSNumber numberWithFloat:rotation+rotationIncrement];
-    
     CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     opacityAnimation.fromValue = [NSNumber numberWithFloat:1.0];
     opacityAnimation.toValue = [NSNumber numberWithFloat:0.0];
-    
     CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
     [animationGroup setAnimations:@[animateStrokeFill, rotationAnimation, opacityAnimation]];
     [animationGroup setDuration:self.animationDuration];
     [animationGroup setRemovedOnCompletion:NO];
     [animationGroup setFillMode:kCAFillModeForwards];
-    
     [self.arcLayer addAnimation:animationGroup forKey:@"google"];
     [CATransaction commit];
 }

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 jhurray. All rights reserved.
 //
 
-#import "JHCustomPTRTableViewController.h"
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UITableViewController

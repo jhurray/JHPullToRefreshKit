@@ -1,11 +1,14 @@
 JHPullToRefreshKit
 ==================
 
-Abstract base class to easily create pull to refresh controls  
+*Abstract base class to easily create pull to refresh controls*
+  
 <img src="./gifs/colors.gif" width="150px"></img>
 <img src="./gifs/bubbles.gif" width="150px"></img>
 <img src="./gifs/google.gif" width="150px"></img>
 <img src="./gifs/yahoo.gif" width="150px"></img>
+
+All of the above were made with less than 150 lines of code. 
 
 ####Why Another Pull To Refresh Library?
 There are lots of PTR libraries out there but none that fit 100% of my needs. PTR controls are awesome when completed but tedious to make. I made this so I would always be able to jump right into the animation, and not having to worry about customization. All you have to do for my implementation is override a few class functions detailing height, animation duration, and what gets run each animation cycle. 
@@ -72,6 +75,34 @@ You can add the refresh control to a scroll view in one line after you initializ
 **-(void)setupRefreshControlForAnimationView:(UIView *)animationView;** Set refresh animation to correct state before a new cycle begins.
 
 **-(void)animationCycleForAnimationView:(UIView *)animationView;** UI changes to be animated continuously until **endRefreshing** is called.   
+
+####Other Useful Properties and Methods:
+
+```objective-c
+// manual refresh
+// call in view controller
+-(void)forceRefresh;
+
+// called to end the animation
+// call in view controller
+-(void)endRefreshing;
+
+// should reset UI elements here
+// called after refresh control finishes and is hidden
+// override in subclass
+-(void)resetAnimationView:(UIView *)animationView;
+
+// called to add a subview to the animation view
+// important to only add subviews in this manner
+// call in subclass to setup refresh control
+-(void)addSubviewToRefreshAnimationView:(UIView *)subview;
+
+//getters
+@property (atomic, readonly, getter=isRefreshing) BOOL refreshing;
+@property (nonatomic, readonly) CGFloat height;
+@property (nonatomic, readonly) NSTimeInterval animationDuration;
+@property (nonatomic, readonly) NSTimeInterval animationDelay;
+```
 
 ##<a name="under-the-hood"></a>Under The Hood
  
@@ -185,7 +216,7 @@ Below is an example for a *Fade to black* exit animation:
 
 ##<a name="calayer"></a> CALayer Animations
 
-Some animations are better done using CABasicAnimations. A good example of this is rotating >= 360 degrees. If you want to spin a view 450 degrees, UIView animation blocks will only rotate it 90 degrees. To have a refresh control that performs CABasic Animations you must subclass **JHLayerAnimationRefreshControl** and override one more abstract method. 
+Some animations are better done using CABasicAnimations. A good example of this is rotating >= 360 degrees. If you want to spin a view 450 degrees, UIView animation blocks will only rotate it 90 degrees. To have a refresh control that performs CABasicAnimations you must subclass **JHLayerAnimationRefreshControl** and override one more abstract method. 
 
 **-(CALayer *) targetLayer;** sets the layer that you want animated.  
 

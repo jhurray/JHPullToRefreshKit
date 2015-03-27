@@ -7,7 +7,6 @@
 //
 
 #import "GoogleRefreshControl.h"
-#import "JHCustomPTRTableViewController.h"
 
 @interface GooglePTRTableViewController : UITableViewController
 

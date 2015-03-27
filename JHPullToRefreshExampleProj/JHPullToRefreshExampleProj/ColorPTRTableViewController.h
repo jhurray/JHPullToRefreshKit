@@ -7,7 +7,6 @@
 //
 
 #import "ColorChangeRefreshControl.h"
-#import "JHCustomPTRTableViewController.h"
 
 @interface ColorPTRTableViewController : UITableViewController
 

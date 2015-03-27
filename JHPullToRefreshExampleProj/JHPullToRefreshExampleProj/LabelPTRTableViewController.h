@@ -7,7 +7,6 @@
 //
 
 #import "LabelRefreshControl.h"
-#import "JHCustomPTRTableViewController.h"
 
 @interface LabelPTRTableViewController : UITableViewController
 

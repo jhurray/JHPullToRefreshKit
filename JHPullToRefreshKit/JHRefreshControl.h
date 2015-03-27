@@ -96,10 +96,6 @@ typedef void (^JHCompletionBlock)(void);
 //      aniamtions will all have springy properties
 @property (nonatomic, assign) JHRefreshControlAnimationType animationType;
 
-
-
-
-
 // Read only properties
 @property (atomic, readonly, getter=isRefreshing) BOOL refreshing;
 @property (nonatomic, readonly) CGFloat height;

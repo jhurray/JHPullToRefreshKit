@@ -110,7 +110,6 @@
     }
 }
 
-
 +(CGFloat)height {
     //return the height
     return 90.0;

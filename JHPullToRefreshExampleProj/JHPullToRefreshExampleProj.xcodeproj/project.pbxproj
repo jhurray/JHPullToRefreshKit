@@ -15,7 +15,6 @@
 		26296ABA1A3E682E003D76A7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26296AB81A3E682E003D76A7 /* LaunchScreen.xib */; };
 		26296AC61A3E682E003D76A7 /* JHPullToRefreshExampleProjTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AC51A3E682E003D76A7 /* JHPullToRefreshExampleProjTests.m */; };
 		26296AD21A3E6974003D76A7 /* JHRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AD11A3E6974003D76A7 /* JHRefreshControl.m */; };
-		26296AD51A3E69F2003D76A7 /* JHCustomPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AD41A3E69F2003D76A7 /* JHCustomPTRTableViewController.m */; };
 		26296ADC1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296ADB1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m */; };
 		26296ADF1A3FEA49003D76A7 /* ColorPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296ADE1A3FEA49003D76A7 /* ColorPTRTableViewController.m */; };
 		26296AE41A400F25003D76A7 /* BubblesPTRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26296AE31A400F25003D76A7 /* BubblesPTRTableViewController.m */; };
@@ -55,8 +54,6 @@
 		26296AC51A3E682E003D76A7 /* JHPullToRefreshExampleProjTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHPullToRefreshExampleProjTests.m; sourceTree = "<group>"; };
 		26296AD01A3E6974003D76A7 /* JHRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JHRefreshControl.h; path = ../../JHPullToRefreshKit/JHRefreshControl.h; sourceTree = "<group>"; };
 		26296AD11A3E6974003D76A7 /* JHRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JHRefreshControl.m; path = ../../JHPullToRefreshKit/JHRefreshControl.m; sourceTree = "<group>"; };
-		26296AD31A3E69F2003D76A7 /* JHCustomPTRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JHCustomPTRTableViewController.h; path = ../../JHPullToRefreshKit/JHCustomPTRTableViewController.h; sourceTree = "<group>"; };
-		26296AD41A3E69F2003D76A7 /* JHCustomPTRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JHCustomPTRTableViewController.m; path = ../../JHPullToRefreshKit/JHCustomPTRTableViewController.m; sourceTree = "<group>"; };
 		26296AD81A3F790D003D76A7 /* JHPullToRefreshKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JHPullToRefreshKit.h; path = ../../JHPullToRefreshKit/JHPullToRefreshKit.h; sourceTree = "<group>"; };
 		26296ADA1A3FE5FA003D76A7 /* ColorChangeRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChangeRefreshControl.h; sourceTree = "<group>"; };
 		26296ADB1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChangeRefreshControl.m; sourceTree = "<group>"; };
@@ -121,7 +118,6 @@
 		26296AA81A3E682E003D76A7 /* JHPullToRefreshExampleProj */ = {
 			isa = PBXGroup;
 			children = (
-				267690F81AC4B20900FCADF5 /* Old Shit */,
 				26296ACF1A3E6926003D76A7 /* JHPullToRefreshKit */,
 				26296AAD1A3E682E003D76A7 /* AppDelegate.h */,
 				26296AAE1A3E682E003D76A7 /* AppDelegate.m */,
@@ -198,15 +194,6 @@
 				26296AE61A400F6D003D76A7 /* BubbleRefreshControl.m */,
 			);
 			name = Bubbles;
-			sourceTree = "<group>";
-		};
-		267690F81AC4B20900FCADF5 /* Old Shit */ = {
-			isa = PBXGroup;
-			children = (
-				26296AD31A3E69F2003D76A7 /* JHCustomPTRTableViewController.h */,
-				26296AD41A3E69F2003D76A7 /* JHCustomPTRTableViewController.m */,
-			);
-			name = "Old Shit";
 			sourceTree = "<group>";
 		};
 		269E86A01A9FC62400ED8BCE /* Yahoo News Digest */ = {
@@ -347,7 +334,6 @@
 				26296ADC1A3FE5FA003D76A7 /* ColorChangeRefreshControl.m in Sources */,
 				26EDE7C51A42148200E6FB02 /* LabelRefreshControl.m in Sources */,
 				26296AAF1A3E682E003D76A7 /* AppDelegate.m in Sources */,
-				26296AD51A3E69F2003D76A7 /* JHCustomPTRTableViewController.m in Sources */,
 				26296AE71A400F6D003D76A7 /* BubbleRefreshControl.m in Sources */,
 				26FFF9D81A44968C009B92E8 /* JHLayerAnimationRefreshControl.m in Sources */,
 				26EDE7C81A4214B100E6FB02 /* LabelPTRTableViewController.m in Sources */,
