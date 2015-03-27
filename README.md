@@ -3,12 +3,20 @@ JHPullToRefreshKit
 
 *Abstract base class to easily create custom pull to refresh controls*
   
-<img src="./gifs/colors.gif" width="150px"></img>
-<img src="./gifs/bubbles.gif" width="150px"></img>
 <img src="./gifs/google.gif" width="150px"></img>
 <img src="./gifs/yahoo.gif" width="150px"></img>
+<img src="./gifs/bubbles.gif" width="150px"></img>
+<img src="./gifs/colors.gif" width="150px"></img>
 
 All of the above were made with **less than 150 lines of code**. 
+
+##Usage
+
+Either clone the repo and manually add the Files in [JHPullToRefreshKit](./JHPullToRefreshKit) or add the following to your Podfile
+
+```
+pod 'JHPullToRefreshKit', '~> 1.0.1'
+```
 
 ####Why Another Pull To Refresh Library?
 There are lots of PTR libraries out there but none that fit 100% of my needs. PTR controls are awesome when completed but tedious to make. I made this so I would always be able to jump right into the custom animation, and not having to worry about customization. All you have to do for my implementation is override a few [abstract methods](#subclassing) detailing height, animation duration, and what gets run each [animation cycle](#under-the-hood). 
@@ -33,7 +41,7 @@ You can add the refresh control to a scroll view in one line after you initializ
 -(void) viewDidLoad {
 	[super viewDidLoad];
 	...
-	self.myRefreshControl = [[MyRefreshControl alloc] init];
+	self.myRefreshControl = [[MyRefreshControl alloc] init]; // subclass of JHRefreshControl
 	[self.myRefreshControl addToScrollView:self.tableView withRefreshBlock:^{
 	     [self tableViewWasPulledToRefresh];
 	}];

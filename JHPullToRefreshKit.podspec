@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'JHPullToRefreshKit'
-  s.version  = '1.0.0'
+  s.version  = '1.0.1'
   s.author   = { 'Jeff Hurray' => 'jhurray33@gmail.com' }
   s.homepage = 'https://github.com/jhurray/JHPullToRefreshKit'
   s.summary  = 'Abstract base class to easily create custom pull to refresh controls'
